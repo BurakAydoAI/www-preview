@@ -17,21 +17,18 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules/.astro/assets
-          key: ${{ runner.os }}-images-${{ hashFiles('node_modules/.astro/assets') }}
+          key: ${{ runner.os }}-images-${{ hashFiles('node_modules/.astro/assets/**/*') }}
           restore-keys: |
-            ${{ runner.os }}-images
+            ${{ runner.os }}-images-$
 
       - name: Cache is loaded ?
         run: |
+          pwd
+          cd node_modules/.astro/assets
           ls
 
       - name: Install, build, and upload your site output
         uses: withastro/action@v2
         with:
-          node-version: 18.17.1
+          node-version: 18.19
           package-manager: npm
-      # - uses: FirebaseExtended/action-hosting-deploy@v0
-      #   with:
-      #     repoToken: ${{ secrets.GITHUB_TOKEN }}
-      #     firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ASTRO_DEPLOY_A0802 }}
-      #     projectId: astro-deploy-a0802
