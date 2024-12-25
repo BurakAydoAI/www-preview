@@ -1,0 +1,69 @@
+---
+import { defaultLang } from "../i18n/utils.ts";
+import { getCollection, render } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import CategoryLayout from "../layouts/CategoryLayout.astro";
+import ProductLayout from "../layouts/ProductLayout.astro";
+import BlogLayout from "../layouts/BlogLayout.astro";
+import FaqLayout from "../layouts/FaqLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+
+export async function getStaticPaths() {
+  const allEntries = await getCollection(defaultLang);
+  // console.log(allEntries);
+  return allEntries.map((entry) => ({
+    params: {
+      categories: entry.id,
+    },
+    props: {
+      entry,
+    },
+  }));
+}
+
+type GetStaticPathsReturn = Awaited<ReturnType<typeof getStaticPaths>>;
+export type CategoryPath = GetStaticPathsReturn[number]["props"]["entry"];
+
+const { entry } = Astro.props;
+const layout = entry.data.layout;
+const isBlogPage = !entry.id.endsWith("blog");
+const { Content } = await render(entry);
+---
+
+{
+  // Automation/Lighting Categories
+  layout === "layouts/CategoryLayout.astro" && (
+    <CategoryLayout categoryData={entry} />
+  )
+}
+
+{
+  // Product categories layout
+  layout === undefined && <ProductLayout product={entry} />
+}
+
+{
+  // FAQ
+  layout === "layouts/FaqLayout.astro" && <FaqLayout faqData={entry} />
+}
+
+{
+  // Blog titles
+  entry.data.layout === "layouts/BlogLayout.astro" && !isBlogPage && (
+    <BlogLayout blog={entry} />
+  )
+}
+
+{
+  // Blog units
+  entry.data.layout === "layouts/BlogLayout.astro" && isBlogPage && (
+    <Layout title={entry.data.title}>
+      <div class="content blog">
+        <Breadcrumbs />
+        <div class="box entries">
+          <Content />
+        </div>
+      </div>
+    </Layout>
+  )
+}

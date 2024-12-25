@@ -1,0 +1,127 @@
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  perspective: 300px;
+  transform-style: preserve-3d;
+}
+
+.landing > .row {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  /* opacity: 0.6; */
+  /* transform: scale(1.05) translateY(0px); */
+  /* transition: all 0.05s linear; */
+  transition: box-shadow 0.3s ease-in-out;
+  max-width: 1440px;
+  /* transform: scale(1.2); */
+  opacity: 1;
+  /* overflow: hidden; */
+  /* border: 1px solid orange; */
+}
+
+.landing > .row.full-width {
+  /* max-width: min(100%, 1000px);
+  width: min(100%, 1000px); */
+  max-width: 100%;
+  width: 100%;
+}
+
+.landing > .row > .media {
+  /* box-shadow: 0px 0px 0px black; */
+  transition: box-shadow 0.1s ease-in-out;
+  margin: 50px;
+  box-shadow: rgb(0, 0, 0) 0px 0px 2px 0px;
+  /* max-width: 200px; */
+  width: 50%;
+}
+
+.landing > .row.visible > .media {
+  /* transform: scale(1) translateY(0);
+  opacity: 1; */
+  /* box-shadow: 5px 5px 20px black; */
+}
+
+.landing > .row.accented {
+  flex-direction: column;
+}
+
+.landing > .row > .text {
+  flex-grow: 0.75;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 40px;
+  max-width: 1200px;
+  width: 50%;
+}
+
+.landing > .row:not(.accented) > .text {
+  width: 50%;
+}
+
+.landing > .row > .text > .title {
+  font-weight: 600;
+  font-size: 2.5rem;
+}
+
+.landing.main-hero {
+  object-fit: fit;
+  margin: 0px;
+  width: 100%;
+}
+
+.landing > .row > .text > .body {
+  text-wrap: balance;
+  text-align: left;
+}
+
+.landing > .row.accented > .media {
+  max-width: 100%;
+  width: 100%;
+}
+
+.landing > .row:not(.accented) > .media {
+  width: 50%;
+}
+
+.landing > .row > .media {
+  border-radius: 10px;
+  align-self: center;
+}
+
+.landing > .row:not(.accented):nth-child(odd) .text {
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.landing > .row:not(.accented):nth-child(odd) .text > .body {
+  text-align: right;
+}
+
+.landing > .row.row.accented > .media {
+  border-radius: 0;
+  width: 100%;
+}
+
+.landing > .row:not(.accented):nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+.hello531 {
+}
+
+@media screen and (max-width: 768px) {
+  #media-test::after {
+    content: "768px";
+  }
+}
+@media screen and (max-width: 1768px) {
+  #media-test::after {
+    content: "1768px";
+  }
+}

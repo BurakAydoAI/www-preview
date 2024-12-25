@@ -1,0 +1,14 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Banner from "../../components/Banner.astro";
+import HomePageContent from "../../components/HomepageContent.astro";
+import { fetchData } from "../../utils/fetchData";
+import "../../css-icons/css/icons-main.css";
+
+const { info, lang } = await fetchData(Astro.url);
+---
+
+<Layout title={info.common.title}>
+  <Banner data={info} lang={lang} />
+  <HomePageContent data={info} />
+</Layout>

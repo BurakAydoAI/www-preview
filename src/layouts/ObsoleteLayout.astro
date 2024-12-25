@@ -1,0 +1,57 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+const { frontmatter, page_title }: Props = Astro.props;
+
+type Collection = Awaited<ReturnType<typeof getCollection>>[number];
+
+type Props = { frontmatter: Collection[]; page_title: string };
+
+if (frontmatter[0].data.layout !== "layouts/ObsoleteManualsLayout.astro") {
+  throw new Error(
+    `Expected product but received ${frontmatter[0].data.layout}`
+  );
+}
+---
+
+<script>
+  import $ from "jquery";
+
+  $(".obsolete-manuals input")
+    .on("keyup", function () {
+      const value = $(this).val();
+      const needle = typeof value === "string" ? value.toLowerCase() : "";
+      console.log(needle);
+      $(".obsolete-manuals a").each(function () {
+        if ($(this).text().toLowerCase().indexOf(needle) === -1) {
+          $(this).hide();
+        } else {
+          $(this).show();
+        }
+      });
+    })
+    .trigger("focus");
+</script>
+
+<Layout title={page_title}>
+  <div class="content obsolete-manuals">
+    <div class="box">
+      <h1>{page_title}</h1>
+      <input type="text" placeholder="MODEL" />
+      {
+        frontmatter.map((item) => {
+          if (item.data.layout !== "layouts/ObsoleteManualsLayout.astro")
+            return null;
+          return (
+            <div>
+              {item.data.manuals.map((manual) => (
+                <a href={`${manual.url}`}>{manual.title}</a>
+              ))}
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</Layout>

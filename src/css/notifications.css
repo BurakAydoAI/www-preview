@@ -1,0 +1,61 @@
+#notifications {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  z-index: 99;
+}
+
+.notification {
+  background-color: #535572;
+  width: 100%;
+  color: white;
+  display: none;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.notification:not(:last-child) {
+  border-bottom: 1px solid #fff;
+}
+
+.notification > div.text {
+  padding: 13px;
+  min-width: 300px;
+  flex-grow: 1;
+}
+.notification > .controls {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
+.notification > .controls > a.button {
+  flex-grow: 1;
+  padding: 13px;
+}
+
+.notification > div.text > a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+.notification > span > a:hover {
+  text-decoration: none;
+}
+
+.notification .button {
+  flex-grow: 1;
+}
+
+@media screen and (min-width: 768px) {
+  .notification {
+    flex-wrap: nowrap;
+  }
+  .notification > .controls {
+    flex-grow: 0;
+  }
+  .notification > .controls > .button {
+    flex-grow: 1;
+    max-width: 200px;
+    padding: 13px 26px;
+  }
+}

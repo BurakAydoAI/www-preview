@@ -1,0 +1,385 @@
+---
+import { defaultLang } from "../i18n/utils";
+import "../css/enda.css";
+import "../css-icons/css/icons-common.css";
+import "../css/enda-medium.css";
+import "../css/enda-large.css";
+import "../css/hero.css";
+import "../css/notifications.css";
+import { getCollection } from "astro:content";
+import MenuEN from "../components/MenuEN.astro";
+import MenuTR from "../components/MenuTR.astro";
+import type { Language } from "../utils/types";
+
+interface Props {
+  data: any;
+  lang: Language;
+}
+
+const { data, lang } = Astro.props;
+
+const baseUrl = lang == defaultLang ? "" : `${lang}/`;
+
+export type SearchItem = {
+  title: string;
+  url: string;
+  type: string;
+};
+
+const allEntries = await getCollection(lang);
+
+const filteredEntries = allEntries.filter((entry) => {
+  const layout = entry.data.layout;
+  return (
+    layout === undefined && {
+      entry,
+    }
+  );
+});
+
+// console.log(filteredEntries);
+
+const searchDB: SearchItem[] = filteredEntries.map((entry) => {
+  return {
+    title: entry.data.title,
+    url: "/" + entry.id,
+    type: "product",
+  };
+});
+
+for (let i = 0; i < filteredEntries.length; i++) {
+  const product = filteredEntries[i];
+  // filter out non products
+  if (product.data.layout !== undefined) continue;
+
+  // do not need to add additional search items if manuals are not present
+  if (!product.data.manuals) continue;
+
+  product.data.manuals.forEach((manual) => {
+    searchDB.push({
+      url: "/" + product.id + "/" + manual.url,
+      title: `${product.data.title} - ${manual.title}`,
+      type: "manual",
+    });
+  });
+}
+---
+
+<script>
+  import $ from "jquery";
+  import Fuse from "fuse.js";
+  import type { SearchItem } from "./Header.astro";
+
+  export type SearchItemHamburger = {
+    title: string;
+    href: string;
+    type: string;
+  };
+
+  class EndaSearch extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset["db"] === undefined) {
+        console.warn("Missing prop db for EndaSearch");
+        return;
+      }
+
+      const searchDB = JSON.parse(this.dataset["db"]) as SearchItem[];
+
+      const fuse = new Fuse(searchDB, {
+        shouldSort: true,
+        threshold: 0.4,
+        keys: ["title"],
+      });
+
+      let input = this.querySelector("input") as HTMLInputElement;
+      let s = $(input);
+      let results = this.querySelector("#search-results") as HTMLDivElement;
+      let r = $(results);
+      // console.log({searchDB, input, results})
+
+      s.keyup(function (e) {
+        if (!input) {
+          console.warn("Search input could not be found");
+          return;
+        }
+        switch (e.key) {
+          case "Escape":
+            $(this).blur();
+            return false;
+          case "ArrowUp":
+            r.find("a.active")
+              .prev()
+              .addClass("active")
+              .next()
+              .removeClass("active");
+            return false;
+          case "ArrowDown":
+            r.find("a.active")
+              .next()
+              .addClass("active")
+              .prev()
+              .removeClass("active");
+            return false;
+          case "Enter":
+            if (r.find("a.active").attr("href")) {
+              window.location.href = r.find("a.active").attr("href");
+            }
+            return false;
+        }
+
+        e.stopPropagation();
+
+        var needle = s.val();
+
+        if (needle.length < 1) {
+          return;
+        }
+
+        const resultss = fuse
+          .search(needle)
+          .map(function (r) {
+            return r.item;
+          })
+          .slice(0, 10);
+
+        r.empty();
+
+        if ($("html").attr("lang") === "tr") {
+          needle = needle.replace("i", "[iİI]").replace("ı", "[ıI]");
+        }
+        var regex = new RegExp(needle, "gi");
+
+        $(resultss).each(function (_, result) {
+          const item = result as unknown as SearchItem;
+          $(
+            '<a href="' +
+              item.url +
+              '" class="search-result-' +
+              item.type +
+              '">' +
+              item.title.replace(regex, "<b>$&</b>") +
+              "</a>"
+          ).appendTo(r);
+        });
+        r.find("a:first").addClass("active");
+        r.addClass("open");
+        r.slideDown();
+      }).blur(function (_) {
+        s.val("");
+        r.removeClass("open");
+        r.slideUp();
+      });
+
+      $("#hamburger-search").focus(function () {
+        $("div.header").hide();
+
+        $("#menu").addClass("searching");
+        $(this).parent().parent().children("div.static-entry").hide();
+        $("html, body").animate({ scrollTop: 0 });
+      });
+
+      $("#menu .search-bar .search-cancel").click(function () {
+        $("#hamburger-search").val("");
+        $("div.header").show();
+        $("#menu").removeClass("searching");
+        $("#hamburger-search").val("");
+        var that = $(this);
+        setTimeout(function () {
+          that.parent().parent().children("div.search-result").remove();
+          that.parent().parent().children("div.static-entry").show();
+          $("html, body").animate({ scrollTop: 0 });
+        }, 100);
+      });
+
+      $("#hamburger-search").keyup(function () {
+        var p = $(this).parent().parent();
+        p.find(".search-result").remove();
+
+        var needle = $(this).val();
+        if (needle.length < 1) {
+          return;
+        }
+        var results = search(needle);
+        $(results).each(function (_i, result) {
+          const item = result as unknown as SearchItemHamburger;
+          $(
+            '<div class="slideUp search-result"><a href="' +
+              item.href +
+              '" class="">' +
+              item.title +
+              "</a></div>"
+          ).appendTo(p);
+        });
+      });
+
+      function search(needle: string, type?: string, limit: number = 10) {
+        const results: SearchItemHamburger[] = [];
+        for (var i in searchDB) {
+          var e = searchDB[i];
+          if (type && e.type !== type) {
+            continue;
+          }
+          var k = e.title || "";
+          if ($("html").attr("lang") === "tr") {
+            k = k.replace("İ", "i").replace("I", "ı");
+            needle = needle.replace("İ", "i").replace("I", "ı");
+          }
+          var haystack = k.toLocaleLowerCase().split(" ");
+          needle = needle.toLocaleLowerCase();
+          let found: number | null = null;
+          for (var j = 0; j < haystack.length; j++) {
+            var h = haystack[j];
+            if (h.startsWith(needle)) {
+              found = j;
+              break;
+            }
+          }
+
+          if (found === null) {
+            continue;
+          }
+          var title = e.title.split(" ");
+          var highlight = ["<b>"];
+          highlight.push(title[found].slice(0, needle.length));
+          highlight.push("</b>");
+          highlight.push(title[found].slice(needle.length));
+          title[found] = highlight.join("");
+          results.push({ href: e.url, title: title.join(" "), type: e.type });
+          if (results.length >= limit) {
+            break;
+          }
+        }
+        console.log(results);
+        return results;
+      }
+
+      $(document).keydown(function (event) {
+        if (
+          (event.ctrlKey || event.metaKey) &&
+          (event.key === "k" || event.key === "K")
+        ) {
+          input.focus();
+          event.preventDefault();
+          return false;
+        }
+      });
+
+      var isMac = /Mac|iPod|iPhone|iPad/.test(window.navigator.userAgent);
+      var hints = [
+        isMac ? "⌘ + K" : "Ctrl + K",
+        null, // assign random below
+        $("#search").attr("placeholder"),
+      ];
+
+      var hintIter = 0;
+      setInterval(function () {
+        hints[1] =
+          searchDB[
+            parseInt(String(Math.random() * (searchDB.length - 1)))
+          ].title;
+        $("#search").addClass("hide-placeholder");
+        setTimeout(function () {
+          $("#search")
+            .attr("placeholder", hints[hintIter++ % hints.length])
+            .removeClass("hide-placeholder");
+        }, 2000);
+      }, 10000);
+    }
+  }
+
+  customElements.define("enda-search", EndaSearch);
+</script>
+
+<script src="../js/hamburger.js"></script>
+<script src="../js/support.js"></script>
+
+<body>
+  <!-- Menu -->
+  <div id="menu">
+    <div class="page current" data-menu-name="main" style="display:block">
+      <div class="search-bar">
+        <input
+          id="hamburger-search"
+          type="text"
+          class="focusme"
+          placeholder={data.common.search}
+        />
+        <span class="search-cancel">{data.common.cancel}</span>
+      </div>
+      <div class="static-entry">
+        <a href={`/${baseUrl}automation/`}>{data.common.menu.automation}</a>
+        <button data-go-to="/automation">&gt;</button>
+      </div>
+      <div class="static-entry">
+        <a href={`/${baseUrl}lighting/`}>{data.common.menu.lighting}</a>
+        <button data-go-to="/lighting">&gt;</button>
+      </div>
+      <div class="static-entry">
+        <a href={`/${baseUrl}distributors`}>{data.common.menu.distributors}</a>
+      </div>
+      <div class="static-entry">
+        <a href={`/${baseUrl}support`}>{data.common.menu.support}</a>
+      </div>
+      <div class="static-entry">
+        <a href={`/${baseUrl}contact`}>{data.common.menu.contact}</a>
+      </div>
+      <div class="static-entry">
+        <a href={`/${baseUrl}about`}>{data.common.menu.about}</a>
+      </div>
+    </div>
+    <!-- Generated Menus -->
+    {lang === "en" ? <MenuEN /> : <MenuTR />}
+  </div>
+  <!-- Header Container -->
+  <div class="menu">
+    <div class="container">
+      <div class="header">
+        <div>
+          <!-- Logo -->
+          <div class="logo">
+            <a href={`/${baseUrl}`} aria-label={data.common.menu.homepage}>
+              <div class="icon-common-endalogo svg-image"></div>
+            </a>
+          </div>
+
+          <!-- Horizontal Menu -->
+          <div id="hmenu" class="hmenu">
+            <a href={`/${baseUrl}automation/`}>{data.common.menu.automation}</a>
+            <div>|</div>
+            <a href={`/${baseUrl}lighting/`}>{data.common.menu.lighting}</a>
+            <div>|</div>
+            <a href={`/${baseUrl}distributors`}
+              >{data.common.menu.distributors}</a
+            >
+            <div>|</div>
+            <a href={`/${baseUrl}support`}>{data.common.menu.support}</a>
+            <div>|</div>
+            <a href={`/${baseUrl}contact`}>{data.common.menu.contact}</a>
+            <div>|</div>
+            <a href={`/${baseUrl}about`}>{data.common.menu.about}</a>
+          </div>
+
+          <!-- Search Bar -->
+          <!-- <Search data={data}/> -->
+          <enda-search data-db={JSON.stringify(searchDB)}>
+            <input
+              name="search"
+              id="search"
+              placeholder={data.common.search}
+              class="icon-common-search svg-image"
+              autocomplete="off"
+            />
+            <div id="search-results"></div>
+          </enda-search>
+          <!-- Hamburger Menu Icon -->
+          <a href="#" class="menu">≡</a>
+        </div>
+      </div>
+
+      <!-- Background Canvas -->
+      <div class="bg">
+        <canvas id="canvas-bg" height="250" width="250"></canvas>
+      </div>
+    </div>
+  </div>
+</body>

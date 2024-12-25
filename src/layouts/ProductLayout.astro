@@ -1,0 +1,130 @@
+---
+import Layout from "./Layout.astro";
+import { defaultLang } from "../i18n/utils";
+import { getCollection } from "astro:content";
+import { fetchData } from "../utils/fetchData";
+import Imagecomp from "../components/ImageComp.astro";
+import "../css/product.css";
+
+const { info, lang } = await fetchData(Astro.url);
+
+const baseUrl = lang === defaultLang ? "/" : `/${lang}/`;
+
+// product.id = automation/process/eup1222
+const { product } = Astro.props;
+
+type Collection = Awaited<ReturnType<typeof getCollection>>[number];
+
+type Props = { product: Collection };
+
+if (product.data.layout !== undefined) {
+  throw new Error(`Expected product but received ${product.data.layout}`);
+}
+
+const imagePath = `/src/assets/${product.id}/photo1.jpg`;
+---
+
+<Layout title={product.data.title}>
+  <div class="content product">
+    <!-- Breadcrumbs can be added here if needed -->
+    <div class="box" itemscope itemtype="http://schema.org/Product">
+      <meta itemprop="image" content={`/${product.id}/photo1-large@x2.jpeg`} />
+      <meta itemprop="description" content={product.data.short} />
+      <div class="product-top">
+        <div class="title" itemprop="name">{product.data.title}</div>
+
+        <div class="product-image">
+          <Imagecomp
+            imagePath={imagePath}
+            altText=`${product.data.title} ENDA Product`
+            loading="eager"
+          />
+        </div>
+
+        <div class="desc">
+          <ul>
+            {
+              (Array.isArray(product.data.desc)
+                ? product.data.desc
+                : [product.data.desc]
+              ).map((l: any) => <li>{l}</li>)
+            }
+          </ul>
+
+          <div class="files">
+            {
+              product.data.manuals && (
+                <div class="manuals">
+                  <h2>{info.product.manuals}</h2>
+                  <ul>
+                    {product.data.manuals.map((manual: any) => (
+                      <li>
+                        <a href={`${baseUrl}${product.id}/${manual.url}`}>
+                          {manual.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+            {
+              product.data.downloads && (
+                <div class="downloads">
+                  <h2>{info.product.downloads}</h2>
+                  <ul>
+                    {product.data.downloads.map((download) => (
+                      <li>
+                        <a href={`${download.url}`}>{download.title}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+          </div>
+        </div>
+      </div>
+      <div class="product-table">
+        <table>
+          <tbody>
+            {
+              product.data.spec?.map((specItem) => {
+                // Check if specItem is a string (for section headers)
+                if (typeof specItem === "string") {
+                  return (
+                    <tr>
+                      <td colspan="2" class="spec-header">
+                        {specItem}
+                      </td>
+                    </tr>
+                  );
+                } else if (typeof specItem === "object" && specItem !== null) {
+                  // Handle objects (for key-value pairs)
+                  return Object.entries(specItem).map(([key, value]) => (
+                    <tr>
+                      <td>{key}</td>
+                      <td>
+                        {value
+                          .toString()
+                          .split("\n")
+                          .map((v) => (
+                            <>
+                              {v}
+                              <br />
+                            </>
+                          ))}
+                      </td>
+                    </tr>
+                  ));
+                }
+              })
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/product.js"></script>
+</Layout>

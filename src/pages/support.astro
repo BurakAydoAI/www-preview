@@ -1,0 +1,62 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { fetchData } from "../utils/fetchData";
+import "../css/support.css";
+
+const { info } = await fetchData(Astro.url);
+---
+
+<script src="../js/support.js"></script>
+
+<Layout title={info.common.menu.support}>
+  <div id="supportButton" class="content support">
+    <div class="box info" style="width: 100%">
+      <div class="support-logo">
+        <img
+          src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0NTkuNjY4IDQ1OS42NjgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ1OS42NjggNDU5LjY2ODsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxMjhweCIgaGVpZ2h0PSIxMjhweCI+CjxnIGlkPSJYTUxJRF8yXyI+Cgk8Zz4KCQk8Zz4KCQkJPHBhdGggZD0iTTM1OS41NzQsMjk3LjA0M2MtMTguMjA0LDI1LjAwMi00Ny42OTIsNDEuMjg2LTgwLjkxNiw0MS4yODZoLTQ2LjYxOGMtMTYuMTA0LDAtMjkuODE4LTEwLjIyNC0zNS4wMTEtMjQuNTM0ICAgICBjLTYuNDEtMS45MTItMTIuNjk2LTQuMzk0LTE4LjgzLTcuNDQyYy0xMi45OS02LjQ1NC0yNC43ODUtMTUuMTk4LTM1LjE2OC0yNi4wM2MtNjcuMzUsMTQuNzk2LTExNy43NTcsNzQuODA4LTExNy43NTcsMTQ2LjYwMyAgICAgdjkuMzg0YzAsMTIuOSwxMC40NTgsMjMuMzU4LDIzLjM1OCwyMy4zNThoMzYyLjQwM2MxMi45LDAsMjMuMzU4LTEwLjQ1OCwyMy4zNTgtMjMuMzU4di05LjM4NCAgICAgQzQzNC4zOTIsMzcxLjQ2NCw0MDQuMzA5LDMyMy4wMzIsMzU5LjU3NCwyOTcuMDQzeiIgZmlsbD0iI2M1MjAyNiIvPgoJCQk8cGF0aCBkPSJNMTE4LjIwNSwyMzIuMTc4YzEwLjAzOSwwLDE4Ljc3Ny01LjU2NCwyMy4zMDQtMTMuNzc1YzAuMTE5LDAuMzI1LDAuMjQsMC42NDgsMC4zNjIsMC45NzEgICAgIGMwLjAzNiwwLjA5NywwLjA3MiwwLjE5NCwwLjEwOCwwLjI5MWMxMC42MiwyNy45NTQsMzEuMjg0LDUxLjM4OCw1OC41MzIsNjEuNjI3YzYuNTktMTAuNDcxLDE4LjI0My0xNy40MzUsMzEuNTMtMTcuNDM1aDQ2LjYxOCAgICAgYzQuNjUsMCw4Ljk3OC0xLjMxMiwxMi43NzItMy40MzNjNi4zNzItMy41NjMsMTIuMTAyLTEyLjYwMiwxNS4wNjEtMTcuMzkzYzQuNzM1LTcuNjY3LDguNDA0LTE1Ljc4OCwxMS42NTctMjQuNjQyICAgICBjMS44MjgsMy4zMiw0LjM0Miw2LjIwOCw3LjM1NCw4LjQ3MXYxMS40MzFjMCwyNS44My0yMS4wMTQsNDYuODQ1LTQ2Ljg0NSw0Ni44NDVIMjMyLjA0Yy04LjgxMywwLTE1Ljk1OCw3LjE0NS0xNS45NTgsMTUuOTU4ICAgICBjMCw4LjgxNCw3LjE0NSwxNS45NTgsMTUuOTU4LDE1Ljk1OGg0Ni42MThjNDMuNDI5LDAsNzguNzYxLTM1LjMzMiw3OC43NjEtNzguNzYxVjIyNi44NiAgICAgYzYuNDYtNC44NTMsMTAuNjM5LTEyLjU3NywxMC42MzktMjEuMjc4di00OC4xMTl2LTE4LjQ1MmMwLTguODgtNC4zNTUtMTYuNzM3LTExLjA0Mi0yMS41NjhDMzUxLjgzLDUxLjgxNiwyOTYuNzcsMCwyMjkuODMzLDAgICAgIEMxNjIuODk1LDAsMTA3LjgzNiw1MS44MTYsMTAyLjY1LDExNy40NDJjLTYuNjg3LDQuODMxLTExLjA0MiwxMi42ODktMTEuMDQyLDIxLjU2OHY2Ni41NyAgICAgQzkxLjYwOCwyMjAuMzExLDEwMy41NzUsMjMyLjE3OCwxMTguMjA1LDIzMi4xNzh6IE0yMjkuODMzLDMxLjkxN2M0OS41NTIsMCw5MC40MjMsMzcuODY4LDk1LjIsODYuMTg1ICAgICBjLTMuMTM2LDIuNDY3LTUuNzA1LDUuNjItNy40NzUsOS4yMzhjLTE1LjA1OC0zOS4yODYtNDguNjcyLTY2LjYzOC04Ny43MjYtNjYuNjM4Yy0zOS44OTYsMC03Mi45NzEsMjguMjkyLTg3LjY2Nyw2Ni40ODEgICAgIGMtMC4wMiwwLjA1Mi0wLjAzOSwwLjEwNS0wLjA1OSwwLjE1OGMtMS43Ny0zLjYxOC00LjMzOS02Ljc3MS03LjQ3NS05LjIzOEMxMzkuNDExLDY5Ljc4NSwxODAuMjgxLDMxLjkxNywyMjkuODMzLDMxLjkxN3oiIGZpbGw9IiNjNTIwMjYiLz4KCQk8L2c+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="
+          alt="Support ENDA"
+        />
+      </div>
+      <div class="text">
+        <h1>Destek</h1>
+        Ürünlerimizle ilgili bir sorunuz varsa lütfen aşağıdaki adımları takip edin.
+      </div>
+    </div>
+    <div class="box col">
+      <div class="step">1.</div>
+      <h1>SSS</h1>
+      Ürünlerimiz hakkında sıkça sorulan sorulara göz atabilirsiniz.
+      <a href="/automation/faq/" class="button">Sıkça Sorulan Sorular</a>
+    </div>
+    <div class="box col">
+      <div class="step">2.</div>
+      <h1>Kılavuzlar</h1>
+      Arama yaparak sorun yaşadığınız ürünü bulun ve ürünün kullanma kılavuzunu indirin.
+      Bir çok sorunun cevabı genelde buradadır.
+      <button class="button" id="product-search">Ara</button>
+    </div>
+    <div class="box col">
+      <div class="step">3.</div>
+      <h1>Bayi ile İletişime geçin</h1>
+      Ürünümüzü satın aldığınız bayimiz ile iletişime geçebilir ve sorununuzu çözmek
+      için size yardımcı olmalarını isteyebilirsiniz.
+      <a href="/distributors" class="button">Bayi Listesi</a>
+    </div>
+    <div class="box col">
+      <div class="step">4.</div>
+      <h1>Bizi Arayın</h1>
+      Bizimle iletişime geçin, yardımcı olalım.
+      <a href="/contact" class="button">İletişim Bilgileri</a>
+    </div>
+    <hr />
+    <div class="box">
+      <div class="text">
+        Üretimden kalkan cihazların kullanma kılavuzlarına buradan
+        ulaşabilirsiniz.
+      </div>
+      <a href="automation/obsolete-manuals/" class="button"
+        >Eski Kullanma Kılavuzları</a
+      >
+    </div>
+  </div>
+</Layout>

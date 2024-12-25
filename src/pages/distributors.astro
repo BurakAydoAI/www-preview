@@ -1,0 +1,110 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { defaultLang } from "../i18n/utils";
+import { fetchData } from "../utils/fetchData";
+import "../css/leaflet.css";
+import "../css/distributors.css";
+import DistGlobal from "../content/data/globaldistributors.yml";
+import DistLocal from "../content/data/localdistributors.yml";
+import type { Distributor } from "../content.config";
+
+const { info, lang } = await fetchData(Astro.url);
+
+const distributorsGlobal = DistGlobal.country as Record<string, Distributor[]>;
+const distributorsLocal = DistLocal.country as Record<string, Distributor[]>;
+const regionLocal = { data: distributorsLocal };
+const regionGlobal = { data: distributorsGlobal };
+---
+
+<script src="../js/distributors.js">
+</script>
+
+<Layout title="Bayiler">
+  <div class="content distributors">
+    <div class="selector">
+      <span class={`button invert global ${lang != defaultLang ? "active" : ""}`}
+        >{info.distributors.global}</span
+      >
+      <span class={`button invert domestic ${lang == defaultLang ? "active" : ""}`}
+        >{info.distributors.domestic}</span
+      >
+    </div>
+    <div class="box map">
+      <div id="distributorsMap" class="box"></div>
+    </div>
+    <div class={`box domestic results`}>
+      <div class="distributor-results">
+        {
+          Object.entries(regionLocal.data).map(([country, distributors]) => (
+              <span
+                title={`region-${country}`}
+                id={`region-${country.replaceAll(" ", "-")}`}
+              />
+              
+              <h1 class="country-header">{country}</h1>
+              
+              <div class="result" >
+                <ul>
+                  {distributors.map((d) => (
+                    <li>
+                      <div class="title">{d.Unvan}</div>
+                      {d.Defrost && (
+                        <div class="defrost">{info.distributors.defrost}</div>
+                      )}
+                      <div class="address">{d.Adres}</div>
+                      <div class="phone icon">{d.Telefon}</div>
+                      {d.Faks && <div class="fax icon">{d.Faks}</div>}
+                      <a class="mail icon" href={`mailto:${d.Mail}`}>
+                        {d.Mail}
+                      </a>
+                      {d.Web && (
+                        <a class="www icon" href={d.Web}>
+                          {d.Web}
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+          ))
+        }
+      </div>
+    </div>
+    <div class="box global results" style="display: none">
+      <div class="distributor-results">
+        {
+          Object.entries(regionGlobal.data).map(([country, distributors]) => (
+              <span
+                title={`region-${country}`}
+                id={`region-${country.replaceAll(" ", "-")}`}
+              />
+              <h1 class="country-header">{country}</h1>
+              <div class="result">
+                <ul>
+                  {distributors.map((d) => (
+                    <li>
+                      <div class="title">{d.Unvan}</div>
+                      {d.Defrost && (
+                        <div class="defrost">{info.distributors.defrost}</div>
+                      )}
+                      <div class="address">{d.Adres}</div>
+                      <div class="phone icon">{d.Telefon}</div>
+                      {d.Faks && <div class="fax icon">{d.Faks}</div>}
+                      <a class="mail icon" href={`mailto:${d.Mail}`}>
+                        {d.Mail}
+                      </a>
+                      {d.Web && (
+                        <a class="www icon" href={d.Web}>
+                          {d.Web}
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

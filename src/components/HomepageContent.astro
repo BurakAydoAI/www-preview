@@ -1,0 +1,45 @@
+---
+// src/components/HomepageContent.astro
+const { data } = Astro.props;
+---
+
+<div class="content" data-invalidate="17">
+  <div class="main">
+    <div class="automation">
+      <div class="icon-automation svg-image"></div>
+      <div class="text">
+        <h1>{data.main.content.automation_header}</h1>
+        {data.main.content.automation_description}
+      </div>
+      <a href="automation/" class="button primary"
+        >{data.main.content.automation_btn}</a
+      >
+    </div>
+    <div id="lighting" class="box lighting">
+      <div class="icon-lighting svg-image"></div>
+      <div class="text">
+        <h2>{data.main.content.lightning_header}</h2>
+        {data.main.content.lightning_description}
+      </div>
+      <a href="lighting/" class="button">{data.main.content.lighting_btn}</a>
+    </div>
+    <div class="box partners">
+      <div class="icon-partners svg-image"></div>
+      <div class="text">
+        <h2>{data.main.content.partners_header}</h2>
+        {data.main.content.partners_description}
+      </div>
+      <a href="contact" class="button">{data.main.content.partners_btn}</a>
+    </div>
+    <div class="box distributors">
+      <div class="icon-distributors svg-image"></div>
+      <div class="text">
+        <h2>{data.main.content.distribution_header}</h2>
+        {data.main.content.distribution_description}
+      </div>
+      <a href="distributors" class="button"
+        >{data.main.content.distribution_btn}</a
+      >
+    </div>
+  </div>
+</div>

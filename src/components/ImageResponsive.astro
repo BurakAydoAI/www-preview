@@ -1,0 +1,62 @@
+---
+import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
+
+interface Props {
+  mobileImgUrl: string | ImageMetadata;
+  tabletImgUrl: string | ImageMetadata;
+  desktopImgUrl: string | ImageMetadata;
+  alt: string;
+  height?: number;
+  width?: number;
+  loading: any;
+  disableAutoPanning?: boolean;
+}
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/img/*.{jpeg,jpg,png,gif,svg}"
+);
+const { mobileImgUrl, tabletImgUrl, desktopImgUrl, alt } = Astro.props;
+
+const mobileImg = await getImage({
+  src: mobileImgUrl,
+  width: 2500,
+  format: "webp",
+  quality: "low",
+});
+
+const tabletImg = await getImage({
+  src: tabletImgUrl,
+  width: 2500,
+  format: "webp",
+  quality: "low",
+});
+
+const desktopImg = await getImage({
+  src: desktopImgUrl,
+  width: 2500,
+  format: "webp",
+  quality: "low",
+});
+---
+
+<picture>
+  <!-- Mobile -->
+  <source media="(max-width: 767px)" srcset={mobileImg.src} width="320" />
+  <!-- Tablet -->
+  <source
+    media="(min-width: 768px) and (max-width: 1024px)"
+    width="768"
+    height="560"
+    srcset={tabletImg.src}
+  />
+  <!-- Desktop -->
+  <source
+    media="(min-width: 1025px)"
+    srcset={desktopImg.src}
+    width="1271"
+    height="560"
+  />
+  <!-- Fallback -->
+  <img src={desktopImg.src} alt={alt} width="1271" height="560" />
+</picture>

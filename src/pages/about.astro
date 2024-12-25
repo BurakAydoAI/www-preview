@@ -1,0 +1,88 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { fetchData } from "../utils/fetchData";
+import { Image } from "astro:assets";
+import myImage from "../assets/img/about.jpg";
+import "../css/about.css";
+const { info } = await fetchData(Astro.url);
+---
+
+
+<Layout title={info.common.menu.about}>
+  <div id="aboutPage" class="content" data-invalidate="1">
+    <div class="img-logo">
+      <div class="box img">
+        <div class="automation">
+          <Image
+            src={myImage}
+            alt="Automation Background"
+            width={400}
+            height={400}
+            loading="eager"
+            quality="mid"
+          />
+        </div>
+      </div>
+      <div class="box logo-bottom">
+        <div class="icon-common-endalogo svg-image"></div>
+      </div>
+    </div>
+    <div class="text">
+      <div class="box about">
+        <h1><strong>ENDA</strong> Hakkında</h1>
+        <p>
+          Firmamız, 1989 yılında fiziksel parametrelerin (ısı, rutubet, basınç,
+          debi, seviye vb.) ölçümü ile ilgili sensör, kontrol ve kayıt cihazları
+          pazarlamak ve bu konularda mühendislik hizmeti vermek amacıyla dört
+          mühendis tarafından kurulmuştur. Genel merkezi İstanbul’da olan
+          firmamız, endüstriyel ölçü kontrol alanında dünya standartlarında
+          mikrokontrolör temelli cihazlar üretmektedir.
+        </p>
+
+        <p>
+          Bugün, bütün Türkiye’ye yayılmış uzman kadrolara sahip bayi ağı ile
+          birlikte, ülke endüstrisinin gücünü oluşturan makine imalatçılarının
+          ve sanayi tesislerinin tüm gereksinimlerine sorunsuz çözüm üretirken,
+          onların verimliliğini artıracak, hedeflerine ulaşmalarına katkıda
+          bulunacak olanaklar sunuyor. Dünya genelinde satış teşkilatını sürekli
+          genişleten ENDA, tüm dünyada 25’i aşkın ülkede temsil edilmekte ve
+          50’yi aşkın ülkede çalışmaktadır. Yaklaşık 28 yıldan bu yana sektörde
+          faaliyet gösteren firmamızın gelişiminde, AR-GE’ ye verilen önemin,
+          teknolojiye yönelik yatırımların ve dinamik satış ve teknik destek
+          aktivitelerinin büyük etkisi olmuştur.
+        </p>
+
+        <p>
+          Sürekli gelişim ve yenilikçilik bilinci ile endüstriyel ölçü kontrol
+          alanında ürün ve hizmetler sunan firmamız, “Aydınlatma Sistemleri ve
+          Kontrolü” alanında da hizmet vermektedir. Aydınlatma konusunda büyük
+          bir bilgi birikimi ve tecrübeye sahip uzman kadromuz, iç ve dış
+          aydınlatmada sunmuş olduğumuz geniş ürün portföyü, proje,
+          süpervizörlük hizmetleri ile teknik, mimari aydınlatma ve aydınlatma
+          kontrolü konularında çözümler sunmaktadır.
+        </p>
+      </div>
+      <div class="box">
+        <h2>Hizmetlerimiz</h2>
+        Üretim, satış, projelendirme ve satış sonrası hizmetlerimiz ile Endüstriyel
+        Otomasyon ve Aydınlatma Sistemleri alanlarında faaliyet göstermekteyiz.
+      </div>
+      <div class="box">
+        <h2>Değerlerimiz</h2>
+        Hizmetlerimizi vazgeçilmez kılan değerlerimizdir: “Verimlilik, Enerji Tasarrufu,
+        Estetik, İleri Teknoloji ve Kaliteyi” tanımlayan sistem çözümlerimiz ile
+        her an yanınızdayız.
+      </div>
+      <div class="box">
+        <h2>Vizyonumuz</h2>
+        Uzmanlık alanlarımızda sektörde tercih edilen, sürdürülebilir değer yaratan
+        ve değişimi yönlendiren öncü bir kurum olmaktır.
+      </div>
+      <div class="box">
+        <h2>Misyonumuz</h2>
+        Sürekli gelişim ve yenilikçilik bilinci ile kaliteli, çevre dostu ve ileri
+        teknolojik ürünler üretmektir.
+      </div>
+    </div>
+  </div>
+</Layout>

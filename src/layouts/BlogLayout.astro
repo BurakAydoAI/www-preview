@@ -1,0 +1,73 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { defaultLang, getLangFromUrl } from "../i18n/utils";
+import { getCollection } from "astro:content";
+import "../css/blogs.css";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+
+const { blog } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+
+const baseUrl = lang === defaultLang ? "/" : `/${lang}/`;
+
+const collection = await getCollection(lang);
+
+const slug = blog.id;
+
+if (!slug) throw new Error(`"${slug}" does not exist"`);
+
+const tokens = slug.split("/");
+
+const currentBlog = tokens[0];
+
+const collectionFiltered = collection
+  .filter(
+    (c: { data: { layout: string; }; id: string; }) =>
+      c.data.layout === "layouts/BlogLayout.astro" &&
+      c.id.startsWith(currentBlog + "/blog") &&
+      c.id !== `${currentBlog}/blog`
+  )
+  .sort((a: { data: { date: string; }; }, b: { data: { date: string; }; }) => {
+    // Parse dates from DD/MM/YYYY format
+    const dateA = new Date(a.data.date.split("/").reverse().join("-"));
+    const dateB = new Date(b.data.date.split("/").reverse().join("-"));
+    return dateA - dateB; 
+  });
+---
+
+<Layout title={blog.data.title}>
+  <div class="content blog">
+    <Breadcrumbs entry={blog} />
+    <div class="box entries">
+      <div class="paginate" data-paginate-size="100">
+        {
+          collectionFiltered.map((blog) => {
+            const { id, data: blogData } = blog;
+            if (blogData.layout !== "layouts/BlogLayout.astro") return null;
+
+            return (
+              <a href={`${baseUrl}${id}`} class="entry">
+                <div class="date">{blogData.date}</div>
+                <b class="title">{blogData.title}</b>
+                <p>{blogData.short}</p>
+              </a>
+            );
+          })
+        }
+        <!-- <div class="popup" id="blog-subscribe">
+    Güncel otomasyon haberlerini almak için üye olabilirsiniz.
+    <p>
+      <a class="button" onclick="" href="javascript:void(0)"> Üye Ol </a>
+    </p>
+  
+    <p></p>
+    <div class="note">
+      Güncelleme bildirimleri HTML5'in <i>Notification</i> arayüzünü kullanır.
+      Tarayıcınız vasıtası ile gelir ve rahatsız etmez.
+    </div>
+  </div> -->
+      </div>
+    </div>
+  </div>
+</Layout>

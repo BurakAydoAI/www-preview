@@ -1,0 +1,104 @@
+title: distributors
+layout: Distribution
+country:
+  Ankara:
+    - Unvan: EBRU SOFT YAZILIM BİLG. LTD. ŞTİ.
+      Adres: İvedik O.S.B. Melih Gökçek Blv. Eminel İş Mrkz. No:18/46 Yenimahalle/ANKARA
+      Telefon: +90 (312) 385 17 48
+      Faks: +90 (312) 385 12 76
+      Web: https://www.ebrusoft.com
+      Mail: satis@ebrusoft.com
+    - Unvan: AYDINLAR ELEKTRİK SAN. VE. TİC. LTD. ŞTİ.
+      Adres: 100. Yıl Bulvarı No:112, 06370, Ostim - Ankara
+      Telefon: +90 (312) 354 14 77 (PBX)
+      Faks: +90 (312) 385 41 89
+      Web: https://aydinlar.com.tr
+      Mail: info@aydinlar.com.tr
+  Gaziantep:
+    - Unvan: AN-EL ELEKTROTEKNİK SAN. TİC. LTD. ŞTİ.
+      Adres: Mücahitler Mh. Sani Konukoğlu Blv. 25 Nolu cd. No:4 Şehitkamil/GAZİANTEP
+      Telefon: +90 (342) 220 59 34, +90 (342) 220 54 60
+      Faks: +90 (342) 230 40 89
+      Web: https://www.anelelektroteknik.com
+      Mail: anel@anelelektronik.com
+    - Unvan: OLİMPİYAT OTOMASYON VE MÜHENDİSLİK İTH. İHR. SAN. TİC. LTD. ŞTİ.
+      Adres: İncilipınar Mh. 36001 Sk. No:7/D Şehitkamil/GAZİANTEP
+      Telefon: +90 (342) 215 35 75
+      Faks: +90 (342) 215 35 76
+      Web: https://www.olimpiyatotomasyon.com.tr
+      Mail: olimpiyat@olimpiyatotomasyon.com.tr
+  İstanbul:
+    - Unvan: BOTEK ELEKTRİK ELEKTRONİK OTOMASYON SAN. TİC. LTD. ŞTİ.
+      Adres: Esenşehir Mh. Güneyli Sk. No:13 Ümraniye/İSTANBUL
+      Telefon: +90 (216) 314 59 00
+      Faks: +90 (216) 527 75 35
+      Web: https://www.botekotomasyon.com
+      Mail: botek@botekotomasyon.com
+    - Unvan: HAN ENDÜSTRİ OTOMASYON MÜHENDİSLİK SAN. TİC. LTD. ŞTİ.
+      Adres: Orhanlı Mah. Çayırlar Cad. No:6 C Tuzla/İstanbul
+      Telefon: +90 (216) 394 32 99
+      Web: https://www.hanendustri.com/
+      Mail: info@hanendustri.com
+    - Unvan: KTN TEKNİK SOĞUTMA SİSTEM EKİPMANLARI LTD.ŞTİ.
+      Defrost: (Defrost Yetkili Satıcısı)
+      Adres: Mahmut Şevket Paşa Mahallesi. Çamlıca Aralığı Sokak. No:18/A  Şişli-İSTANBUL
+      Telefon: +90 (212) 674 47 54
+      Mail: info@ktnsogutma.com.tr
+    - Unvan: MÜHENDİSLER ELEKTRİK SAN. TİC. LTD.ŞTİ.
+      Adres: Okçumusa Cd. Şair Eşrefpaşa Sk. No:18 Karaköy/İSTANBUL
+      Telefon: +90 (212) 256 57 50
+      Faks: +90 (212) 237 67 26
+      Web: http://www.muhendisler.com.tr
+      Mail: info@muhendisler.com.tr
+    - Unvan: SOYLU OTOMASYON ELEKTRİK ELEKTRONİK SAN. TİC. LTD. ŞTİ.
+      Adres: İkitelli O.S.B. Aykosan Sanayi Sitesi Çarşı 1 Blok No:193 Başakşehir/İSTANBUL
+      Telefon: +90 (212) 671 33 56
+      Faks: +90 (212) 671 33 60
+      Web: https://www.soyluotomasyon.com
+      Mail: info@soyluotomasyon.com
+    - Unvan: TURAN MÜHENDİSLİK VE ELEKTRİK SAN. TİC. A.Ş.
+      Adres: "Okçumusa Cd. Menevşe İş Merkezi No. 54/90 Karaköy/İSTANBUL"
+      Telefon: +90 (212) 250 51 51
+      Faks: +90 (212) 250 57 57
+      Web: https://www.turanmuhendislik.com.tr
+      Mail: turan@turanmuhendislik.com.tr
+  İzmir:
+    - Unvan: ATAK ELEKTRİK MÜHENDİSLİK OTOMASYON SAN. TİC. LTD. ŞTİ.
+      Adres: 1443 Sk.No:2/H Halkapınar Yenişehir/İZMİR
+      Telefon: +90 (232) 469 96 37
+      Faks: +90 (232) 469 71 26
+      Web: https://www.atakelektrik.com
+      Mail: izmirsatis@atakelektrik.com
+    - Unvan: BİNBİR ENDÜSTRİYEL ELEKTRONİK OTOMASYON SAN. TİC. LTD. ŞTİ.
+      Adres: 1202/1 Sk. No:69-715 İnşaatçılar İş Hanı Yenişehir/İZMİR
+      Telefon: +90 (232) 457 68 08
+      Faks: +90 (232) 469 37 87
+      Web: https://www.1001otomasyon.com
+      Mail: info@1001otomasyon.com
+    - Unvan: TECNO ENDÜSTRİYEL OTOM. MÜHENDİSLİK ELK. ELKT. SAN. TİC. LTD. ŞTİ.
+      Adres: Yenişehir Mh. 1203/8 Sk. No:5 A Blok Ulubey İş Merkezi Yenişehir/İZMİR
+      Telefon: +90 (232) 469 93 61
+      Faks: +90 (232) 469 93 62
+      Web: https://www.tecno.com.tr
+      Mail: tecnootomasyon@tecno.com.tr
+  Kocaeli:
+    - Unvan: HAMLE MÜHENDİSLİK OTOMASYON ELEKTRİK MAKİNA İNŞ. SAN. TİC. LTD. ŞTİ.
+      Adres: İbrahimağa Cd. No:239 Kat:1 Gebze/KOCAELİ
+      Telefon: +90 (262) 644 58 50, +90 (262) 644 58 51
+      Faks: +90 (262) 644 58 52
+      Web: https://www.hamle.biz
+      Mail: hamle@hamle.biz
+  Konya:
+    - Unvan: ÖZSAMUR ELEKTRONİK VE OTOMASYON TİC. LTD. ŞTİ.
+      Adres: Oto Parçacılar Sitesi Boyluca Sk. C Blok No:32 Selçuklu/KONYA
+      Telefon: +90 (332) 233 82 72, +90 (332) 235 03 24
+      Faks: +90 (332) 236 05 41
+      Web: https://www.ozsamur.com
+      Mail: ozsamur@ozsamur.com
+  Sakarya:
+    - Unvan: ELPİM MAKİNA İNŞAAT ELEKTRİK MALZEMELERİ PAZARLAMA TİC. SAN. A.Ş.
+      Adres: Erenler Mh. 1201. Sk. No:12/1 Erenler/SAKARYA
+      Telefon: +90 (264) 276 00 83
+      Faks: +90 (264) 275 19 00
+      Web: https://www.elpim.com.tr
+      Mail: elpim@elpim.com.tr

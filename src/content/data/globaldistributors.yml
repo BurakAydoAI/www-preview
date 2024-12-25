@@ -1,0 +1,150 @@
+title: distributors
+layout: Distribution
+country:
+  Algeria:
+    - Unvan: OPCON - CONCEPTION ET REALIASTION EN GENIE ELECTRIQUE
+      Adres: 8, Rue la Bataille Djebel Mnaouer (Ex Rue Dieu la Foy) Gambetta Oran - ALGERIA
+      Telefon: +213 (0) 781 53 08 61, +213 (0) 771 24 67 77, +213 (0) 783 14 02 53
+      Mail: lavolt@yahoo.fr
+  Azerbaijan:
+    - Unvan: ELEKTROTEXNIKA VE AVTOMATIKA MALLARININ SATIŞI
+      Adres: Baku 8 km bazarı Sunay T/M Magaza No:8 - AZERBAIJAN
+      Telefon: +99 412 370 41 23 - +99 450 611 51 95
+      Faks: +99 412 370 4123
+      Mail: neman577@mail.ru, sahib_diqlas@hotmail.com
+  Bulgaria:
+    - Unvan: ASİL ELEKTRİK ELEKTRONİK OTOMASYON SAN. TİC. LTD. ŞTİ.
+      Adres: бул.Хрикто Ботев N-87, 4000  Гр.Пловдив  България
+      Telefon: +088 328 55 66, +088 327 55 66
+      #    Mail: neman577@mail.ru, sahib_diqlas@hotmail.com
+      Mail: info@asilelektrik.bg
+      Web: http://www.asilelekrik.bg
+  Egypt:
+    - Unvan: EGET (Egypt for Engineering & Trading)
+      Adres: Unit 7 - Sama Tower - next to Masriya Center 3 - Ordonia Area - 10th of Ramadan City - EGYPT
+      Telefon: +20 106 737 41 54
+      Mail: info_eget@yahoo.com
+  Germany:
+    - Unvan: SURAN Industrieelektronik
+      Adres: Dettinger Str. 9 D-72160 Horb a.N. - GERMANY
+      Telefon: +49 (0) 7451 625 617
+      Faks: +49 (0) 7451 625 0650
+      Web: http://www.suran-elektronik.de
+      Mail: info@suran-elektronik.de
+  Greece:
+    - Unvan: AGGELOS VALOUKAS BROS CO.
+      Adres: 361 Monastiriou Str., 54628 Thessaloniki - GREECE
+      Telefon: +30 (231) 052 96 39
+      Faks: +30 (231) 052 96 39
+      Web: http://www.valcom.gr
+      Mail: web@valcom.gr
+  Iran:
+    - Unvan: CONTROL SANAT CO.
+      Adres: No:54 Fadjr St., Motahari Ave. Tehran - IRAN
+      Telefon: +98 21 888 21 300, +98 912 077 6410
+      Faks: +98 21 888 39 701
+      Web: http://www.controlsanat.ir
+      Mail: r.niknazar@controlsanat.ir
+  Iraq:
+    - Unvan: AL YASERI ENGINEERING
+      Adres: Aked Al Nasara, Al Rasheed Str. Baghdad - IRAQ
+      Telefon: +96 474 006 08 781, +96 479 014 47 129, +96 477 058 46 501
+      Mail: masterhnm@yahoo.com
+  Israel:
+    - Unvan: M.C.I. ELECTRICAL AND CONTROL ENGINEERING 2017 LTD.
+      Adres: Moqebleh 19354 P.O.Box 605 - ISRAEL
+      Telefon: +972 564 77 105
+      Mail: younesqassem@hotmail.com
+  Lebanon:
+    - Unvan: SIMON ELECTRIC CENTER S.A.R.L.
+      Adres: Nahr-Mar Mikhael, Koubayat street Beirut - LEBANON
+      Telefon: +961 (1) 560 222, +961 (1) 560 333, +961 (1) 581 650
+      Faks: +961 (1) 560 444
+      Mail: admin@simonelectriccenter.com
+  Philippines:
+    - Unvan: ELECTRICAL & EQUIPMENT SALES CO. INC.
+      Adres: 211 Katipunan ave. Q.,C. Manila - PHILIPPINES
+      Telefon: +632 913 54 14 - 913 26 62 - 913 22 54
+      Faks: +632 913 46 56
+      Mail: elescom@skyinet.net
+  Poland:
+    - Unvan: DACPOL SP. Z O.O.
+      Adres: Ul. Pulawska 34 05-500 Piaseczno - POLAND
+      Telefon: +48 22 70 35 100
+      Faks: +48 22 70 35 101
+      Web: http://www.dacpol.com.pl
+      Mail: dacpol@dacpol.com.pl
+  Romania:
+    - Unvan: CALDOR HEATING INDUSTRIAL
+      Adres: Strada Sfantu Gheorghe, NR20, L27, F7 Judet Ilfov CP077145 - ROMANIA
+      Telefon: +4 0799 88 55 55
+      Web: https://www.caldor.ro/
+      Mail: info@caldorheat.com
+  Saudi Arabia:
+    - Unvan: POWER & CONTROL COMPANY for TRADING
+      Adres: Al Jboor Passage Alfaisaliya, Exit 17 P.O.B 246035 11313 Riyad - SAUDI ARABIA
+      Telefon: +966 11 2424741
+      Faks: +966 11 2424456
+      Mail: mail@powerandcontrol-est.com, abed223@yahoo.com
+  Singapore:
+    - Unvan: SUPERTRON (S) PTE LTD.
+      Adres: "16 Kallang Place #06-17 339156 - SINGAPORE"
+      Telefon: +65 6291 2003
+      Faks: +65 6294 7731
+      Web: http://www.supertron.com.sg
+      Mail: sjtee@supertron.com.sg
+  Spain:
+    - Unvan: SAURI AUTOMATION S.L.
+      Adres: C/ Jacint Benavent 1-3 Local Santa Maria de Palautordera 08460 BARCELONA - SPAIN
+      Telefon: +34 93 848 25 05
+      Faks: +34 93 848 25 05
+      Web: http://www.sauri-automation.com
+      Mail: josep@sauri-automation.com
+  Sultanate of Oman:
+    - Unvan: AL WADOOD INDUSTRIAL SERVICES
+      Adres: P.O.Box 154, Postal Code-124, Rusayl - SULTANATE OF OMAN
+      Telefon: +968 9934 8441, +968 2442 3434
+      Faks: +968 2442 2349
+      Mail: service@alwadoodindustrial.com
+  Syria:
+    - Unvan: OBEJİ & NASHED CO.
+      Adres: Alserian Aeria, Yuhanna Fam Alzahab Street - SYRIA
+      Telefon: +963 21 2231705, +963 21 2231271, +963 933 572791
+      Mail: info@nasotomasyon.com
+  Thailand:
+    - Unvan: AMDA COMPANY
+      Adres: 12 Soi Rom Kiao 25/2 Rom Kiao Rd. Khuong Sam Prawet Ladkabang, Bangkok 10250 - THAILAND
+      Telefon: +66 210 50 560
+      Faks: +66 210 50 561
+      Web: http://www.amda.co.th
+      Mail: info@amda.co.th
+  Tunusia:
+    - Unvan: LA MAISON DU CABLE
+      Adres: Route de l’aeroport km 10 3042 Sfax - TUNISIA
+      Telefon: +216 642 560
+      Faks: +216 74 642 564
+      Mail: lamaisonducable1@gmail.com
+  Ukraine:
+    - Unvan: VBR LTD.
+      Adres: 41, Demiyivska Str. 03040 Kyiv - UKRAINE
+      Telefon: +38 (044) 259 04 38
+      Faks: +38 (044) 259 04 38
+      Web: http://www.vbr.com.ua
+      Mail: office@vbr.com.ua
+  United Arab Emirates:
+    - Unvan: TECHNOTURK TECHNOLOGY FZE
+      Adres: Business Centres World FZE, Jafza one, 11th Floor P.O.Box 35608 Jebel Ali Free Zone Dubai - UNITED ARAB EMIRATES
+      Telefon: +971 522 245 582
+      Mail: info@technoturk.ae, technoturk@yahoo.com
+  United Kingdom:
+    - Unvan: WEST CONTROL SOLUTIONS
+      Adres: The Hyde Business Park, Brighton, East Sussex, BN2 4JU - ENGLAND
+      Telefon: +44 (0)1273 606 271
+      Web: http://www.west-cs.com
+      Mail: Enquiries@west-cs.com
+  United States of America:
+    - Unvan: WEST CONTROL SOLUTIONS
+      Adres: 1675 N. Delany Rd. Gurnee IL 60031 - UNITED STATES OF AMERICA
+      Telefon: +1  800 866 6659
+      Web: http://www.west-cs.com
+      Mail: NA@west-cs.com

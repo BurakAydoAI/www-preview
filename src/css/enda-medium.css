@@ -1,0 +1,149 @@
+@media screen and (min-width: 768px) {
+  div.progress {
+    display: none;
+  }
+
+  div.category-list > a {
+    height: 90px;
+    margin: 10px;
+    padding: 10px;
+    border-bottom: 5px solid #fff;
+  }
+
+  div.category-list > a:hover {
+    border-bottom: 2px solid #c70800;
+  }
+
+  .detailed_groups > a:hover {
+    color: #c52026;
+    opacity: 0.95;
+  }
+
+  .logo {
+    width: 100px;
+    margin-right: 80px;
+    flex-grow: 0;
+  }
+
+  .header .logo {
+    position: static;
+    margin-left: 15px;
+  }
+
+  .hmenu {
+    display: flex;
+  }
+
+  #menu {
+    display: none;
+  }
+
+  .header .menu {
+    display: none;
+  }
+
+  .footer .menu {
+    display: flex;
+  }
+
+  .footer .bottom {
+    flex-direction: row;
+    border-top: 1px solid #505050;
+  }
+
+  #search {
+    display: block;
+  }
+
+  .banner {
+    display: flex;
+    background-position-y: 0px;
+    height: 560px;
+    background-size: 1000px 373.33px;
+  }
+
+  .automation > .text {
+    text-align: left;
+    width: 70%;
+  }
+  .automation > .svg-image {
+    width: 30%;
+  }
+
+  .horizontal_groups {
+    flex-direction: row;
+  }
+
+  .detailed_groups > a {
+    flex-direction: row;
+    padding: 13px;
+  }
+
+  table.comparision td:first-child {
+    min-width: 90px;
+  }
+
+  .comparision > table {
+    table-layout: fixed;
+  }
+
+  table td {
+    font-size: 14px;
+  }
+
+  table tr > td:first-child {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  table td:first-child[colspan] {
+    font-size: 18px;
+  }
+  div.small-comparator {
+    display: none;
+  }
+
+  .detailed_groups .text {
+    /* margin: -15px 10px 0px 30px; */
+    margin: 10px;
+  }
+  .detailed_groups .title {
+    margin: 0px;
+  }
+
+  .banner {
+    background-size: 735px 560px;
+  }
+
+  .banner .label-container {
+    width: 50%;
+  }
+
+  .banner h1 {
+    font-size: 26px;
+    margin: 10px;
+  }
+  .banner-container > .nav {
+    display: block;
+  }
+
+  .breadcrumbs > a {
+    padding: 0px;
+    border: 0px;
+    flex-grow: 0;
+    margin: inherit;
+  }
+
+  .button.route {
+    display: none;
+  }
+
+  #navigate-link {
+    width: inherit;
+    margin: inherit;
+    padding: inherit;
+  }
+  .policies {
+    white-space: nowrap;
+  }
+}

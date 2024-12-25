@@ -1,0 +1,46 @@
+---
+import { defaultLang } from "../i18n/utils";
+interface Props {
+  data: any;
+  lang?: string;
+}
+
+const { lang, data } = Astro.props;
+// Ensure the URL uses the full origin with optional language
+const baseUrl = lang == defaultLang ? "" : `/${lang}`;
+
+function getSortedEntries(sectionData: any) {
+  // Convert the object into an array of [key, value] pairs
+  return (
+    Object.entries(sectionData)
+      // Filter out any non-item properties like 'title'
+      .filter(([key]) => key !== "title")
+      // Sort the entries by key to ensure consistent order
+      .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
+  );
+}
+
+// Process automation entries
+const automationEntries = getSortedEntries(data.common.footer.automation);
+
+// Process lightning entries
+const lightningEntries = getSortedEntries(data.common.footer.lighting);
+---
+
+<div class="page">
+  <div>{data.common.footer.automation.title}</div>
+  {
+    automationEntries.map(([slug, label]) => (
+      <a href={`${baseUrl}/automation/${slug}`}>{label}</a>
+    ))
+  }
+</div>
+
+<div class="page">
+  <div>{data.common.footer.lighting.title}</div>
+  {
+    lightningEntries.map(([slug, label]) => (
+      <a href={`${baseUrl}/lighting/${slug}`}>{label}</a>
+    ))
+  }
+</div>

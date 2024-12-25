@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import CategoryLayout from "../../layouts/CategoryLayout.astro";
+import ProductLayout from "../../layouts/ProductLayout.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import FaqLayout from "../../layouts/FaqLayout.astro";
+import { parse } from "marked";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+
+export async function getStaticPaths() {
+  const allEntries = await getCollection("en");
+  return allEntries.map((entry) => ({
+    params: {
+      categories: entry.id,
+    },
+    props: {
+      entry,
+    },
+  }));
+}
+
+type GetStaticPathsReturn = Awaited<ReturnType<typeof getStaticPaths>>;
+export type CategoryPath = GetStaticPathsReturn[number]["props"]["entry"];
+
+const { entry } = Astro.props;
+
+const layout = entry.data.layout;
+
+const isBlogPage = !entry.id.endsWith("blog");
+const { Content } = await render(entry);
+---
+
+{
+  layout === "layouts/CategoryLayout.astro" && (
+    <CategoryLayout categoryData={entry} />
+  )
+}
+
+{layout === undefined && <ProductLayout product={entry} />}
+
+{layout === "layouts/FaqLayout.astro" && <FaqLayout faqData={entry} />}
+{
+  entry.data.layout === "layouts/BlogLayout.astro" && !isBlogPage && (
+    <BlogLayout blog={entry} />
+  )
+}
+{
+  // Blog units
+  entry.data.layout === "layouts/BlogLayout.astro" && isBlogPage && (
+    <Layout title={entry.data.title}>
+      <div class="content blog">
+        <Breadcrumbs />
+        <div class="box entries">
+          <Content />
+        </div>
+      </div>
+    </Layout>
+  )
+}

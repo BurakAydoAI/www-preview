@@ -1,0 +1,62 @@
+.support input {
+  width: 100%;
+  outline: none;
+  font-size: 30px;
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.content.support {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.content.support > .box.info {
+  display: flex;
+}
+
+.box.info > .text {
+  width: 50%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.content.support > .box {
+  position: relative;
+}
+
+.support-logo,
+.support-logo > img {
+  width: 128px;
+  height: 128px;
+}
+
+.col {
+  width: 40%;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.step {
+  position: absolute;
+  top: 5px;
+  left: 9px;
+  font-size: 30px;
+  font-weight: 800;
+  color: #888;
+}
+
+@media screen and (max-width: 768px) {
+  #supportButton .button {
+    white-space: normal; /* Allows text to wrap */
+    display: flex; /* Helps in maintaining the button's shape */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    padding: 10px 15px; /* Adjust padding to give more space */
+    min-height: 30px; /* Minimum height to accommodate text properly */
+    min-width: 100px; /* Minimum width to maintain aesthetics */
+  }
+}

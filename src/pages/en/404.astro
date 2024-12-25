@@ -1,0 +1,14 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { fetchData } from "../../utils/fetchData";
+
+const { info } = await fetchData(Astro.url);
+
+const title = "404";
+---
+
+<Layout title={title}>
+  <div style={{ textAlign: "center", margin: "auto" }}>
+    <p style="font-size: x-large; font-weight: 800;" set:html={info.error} />
+  </div>
+</Layout>

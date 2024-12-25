@@ -1,0 +1,136 @@
+---
+import { defaultLang } from "../i18n/utils";
+import { getCollection } from "astro:content";
+import { fetchData } from "../utils/fetchData";
+
+const { info, lang } = await fetchData(Astro.url);
+
+type BreadCrumb = {
+  url: string;
+  text: string;
+};
+
+// const { entry } = Astro.props;
+const slug = Astro.url.pathname;
+const slugTokens = slug.split("/").filter(Boolean);
+
+const supportedLanguages = ["tr", "en"];
+
+if (supportedLanguages.includes(slugTokens[0])) {
+  slugTokens.shift();
+}
+
+const crumbSlugs = slugTokens.map((_, i, arr) => {
+  return arr.slice(0, i + 1).join("/");
+});
+
+const allEntries = await getCollection(lang);
+
+const crumbs: BreadCrumb[] = crumbSlugs.map((crumbSlug) => {
+  const entry = allEntries.find((entryTitle) => entryTitle.id == crumbSlug);
+
+  if (entry === undefined) {
+    throw Error(`Could not find entry for slug ${crumbSlug}`);
+  }
+  const crumbTitle = entry.data.title;
+  return {
+    text: crumbTitle,
+    url: lang == defaultLang ? "/" + crumbSlug : "/en/" + crumbSlug,
+  };
+});
+crumbs.unshift({
+  url: lang == defaultLang ? "/" : "/en/",
+  text: info.title,
+});
+---
+
+<ol
+  class="box breadcrumbs"
+  itemscope
+  itemtype="http://schema.org/BreadcrumbList"
+>
+  {
+    crumbs.map((crumb) => (
+      <li
+        itemprop="itemListElement"
+        itemscope
+        itemtype="http://schema.org/ListItem"
+      >
+        <span class="drop-down-container">
+          {crumbs.indexOf(crumb) === crumbs.length - 1 ? (
+            <a
+              itemscope
+              itemtype="https://schema.org/WebPage"
+              itemprop="item"
+              class="active breadcrumb-parent-link"
+              href={crumb.url}
+            >
+              <h1 itemprop="name">{crumb.text}</h1>
+            </a>
+          ) : (
+            <a
+              itemscope
+              itemtype="https://schema.org/WebPage"
+              itemprop="item"
+              href={crumb.url}
+              itemid={crumb.url}
+              class={
+                crumbs.indexOf(crumb) !== 0 ? "breadcrumb-parent-link" : ""
+              }
+            >
+              <span itemprop="name">{crumb.text}</span>
+            </a>
+          )}
+          {/* {% if b.children.size > 0 %}
+      <ul class="drop-down">
+        {% for c in b.children %}
+        <li><a href="{{c.url}}" class="no-arrow">{{c.text}}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %} */}
+        </span>
+
+        <meta itemprop="position" content="{{forloop.index}}" />
+      </li>
+    ))
+  }
+</ol>
+
+<!-- <script lang="javascript">
+  document
+    .querySelectorAll("a.breadcrumb-parent-link:not(.no-arrow)")
+    .forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        return;
+        if (window.innerWidth < 768) {
+          return;
+        }
+        console.log(e);
+
+        document
+          .querySelectorAll(".drop-down-container.open")
+          .forEach(function (el) {
+            el.classList.remove("open");
+          });
+
+        e.preventDefault();
+        e.stopPropagation();
+        // e.stopImmediatePropagation();
+        e.target.parentNode.parentNode.classList.add("open");
+      });
+    });
+
+  document.querySelectorAll("ul.drop-down").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+  });
+
+  document.querySelector("body").addEventListener("click", function (e) {
+    document
+      .querySelectorAll(".drop-down-container.open")
+      .forEach(function (el) {
+        el.classList.remove("open");
+      });
+  });
+</script> -->

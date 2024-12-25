@@ -1,0 +1,196 @@
+---
+import { defaultLang } from "../i18n/utils.ts";
+import { fetchData } from "../utils/fetchData";
+import FooterCategoryMenu from "./FooterCategoryMenu.astro";
+
+interface Props {
+  data: any;
+}
+
+const availableLanguages = {
+  tr: { label: "Türkçe", iconClass: "icon-common-lang-tr" },
+  en: { label: "English", iconClass: "icon-common-lang-gb" },
+};
+
+const { info, lang } = await fetchData(Astro.url);
+
+const baseUrl = lang === defaultLang ? "" : `/${lang}`; // Set base URL based on language
+const currentPath = Astro.url.pathname.replace(/^\/(tr|en)/, ""); // Remove language prefix
+
+// Filter out the currently selected language from the available options
+const languageOptions = Object.entries(availableLanguages).filter(
+  ([code]) => code !== lang
+);
+---
+
+<!-- is:inline src="../js/language-cookie.js" -->
+<script>
+  import Cookies from "js-cookie";
+  import $ from "jquery";
+
+  $(document).ready(() => {
+    const n = navigator as any;
+    if (navigator.languages === undefined) {
+      // classic IE...
+      n.languages = [];
+      if (n.browserLanguage) {
+        n.languages.push(n.browserLanguage);
+      }
+      if (n.userLanguage) {
+        n.languages.push(n.userLanguage);
+      }
+      if (n.systemLanguage) {
+        n.languages.push(n.systemLanguage);
+      }
+    }
+    var languages = n.languages.map(function (lang: string) {
+      return lang.split("-")[0].toLowerCase();
+    });
+
+    if (
+      Cookies.get("dont-offer-english") !== "true" &&
+      $("html").attr("lang") === "tr" &&
+      languages.indexOf("tr") === -1
+    ) {
+      $("#offer-english").show().css("display", "flex");
+    }
+
+    $("#offer-english-decline").click(function () {
+      Cookies.set("dont-offer-english", "true", { expires: 365 });
+      $("#offer-english").hide();
+    });
+    if (Cookies.get("cookie-consent") != "true") {
+      $("#cookie-consent").css("display", "flex").show().css("display", "flex");
+    }
+  });
+</script>
+
+<div class="footer">
+  <div>
+    <div class="language">
+      <div class="icon-common-endalogo_bottom svg-image"></div>
+      <div class="icon-common-footer-innovation svg-image"></div>
+    </div>
+    <div class="menu">
+      <FooterCategoryMenu lang={lang} data={info} />
+      <div class="page">
+        <div>{info.common.menu.blogs}</div>
+        <a href={`${baseUrl}/automation/blog`}>{info.common.menu.automation}</a>
+        <a href={`${baseUrl}/lighting/blog`}>{info.common.menu.lighting}</a>
+      </div>
+      <div class="page">
+        <div>{info.common.menu.social}</div>
+        <div class="social-wrapper">
+          <a
+            href={info.common.social_links.linkedin}
+            target="_blank"
+            class="linkedin"
+            aria-label="linkedin"></a>
+          <a
+            href={info.common.social_links.youtube}
+            target="_blank"
+            class="youtube"
+            aria-label="youtube"></a>
+          <a
+            href={info.common.social_links.github}
+            target="_blank"
+            class="github"
+            aria-label="github"></a>
+        </div>
+      </div>
+      <div class="page bold">
+        <div></div>
+        <a href={`${baseUrl}/automation/price-2024.pdf`}
+          >{info.common.menu.prices}</a
+        >
+        <a href={`${baseUrl}/distributors`}>{info.common.menu.distributors}</a>
+        <a href={`${baseUrl}/support`}>{info.common.menu.support}</a>
+        <a href={`${baseUrl}/contact`}>{info.common.menu.contact}</a>
+        <a href={`${baseUrl}/about`}>{info.common.menu.about}</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <div>
+        {info.common.copyright}
+      </div>
+      <div class="policies">
+        <a href={`${baseUrl}/terms-of-use`}>{info.common.terms}</a> |
+        <a href={`${baseUrl}/integrated-management-system-policy`}
+          >{info.common.environmental}</a
+        > |
+        <a href={`${baseUrl}/privacy-policy`}>{info.common.privacy}</a>
+      </div>
+      <div class="lang-social-wrapper">
+        <div class="language-selector">
+          {
+            // Map over the filtered language options to dynamically generate language links
+            languageOptions.map(([code, { label, iconClass }]) => (
+              <a
+                href={
+                  code === defaultLang
+                    ? `${currentPath}`
+                    : `/${code}${currentPath}`
+                }
+                class={`language-option ${lang === code ? "active" : ""}`}
+              >
+                <span class={`svg-image lang-icon ${iconClass}`}>&nbsp;</span>
+                {label}
+              </a>
+            ))
+          }
+        </div>
+
+        <div class="social-wrapper-mobile">
+          <a
+            href={info.common.social_links.linkedin}
+            target="_blank"
+            class="linkedin"></a>
+          <a
+            href={info.common.social_links.youtube}
+            target="_blank"
+            class="youtube"></a>
+          <a
+            href={info.common.social_links.github}
+            target="_blank"
+            class="github"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="notifications">
+  {
+    (
+      <div class="notification" id="offer-english">
+        <div class="text">Please choose your preferred language.</div>
+        <div class="controls">
+          <a
+            href={`/en${Astro.url.pathname}`}
+            class="button"
+            id="change-language"
+          >
+            Switch to English
+          </a>
+          <button class="button" id="offer-english-decline">
+            Türkçe Kalsın
+          </button>
+        </div>
+      </div>
+    )
+  }
+  <div class="notification" id="cookie-consent">
+    <div class="text">
+      {info.common.cookie_consent}
+      <a href={`${baseUrl}/privacy-policy`}>
+        {lang === "tr" ? "Detaylı bilgi" : "Learn more"}
+      </a>
+    </div>
+    <div class="controls">
+      <button
+        onclick="Cookies.set('cookie-consent', true, {expires: 365}); this.parentElement.parentElement.style.display='none';"
+        class="button">{info.common.consent_ack}</button
+      >
+    </div>
+  </div>
+</div>

@@ -1,22 +1,77 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import { fetchData } from "../utils/fetchData";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { getCollection } from "astro:content";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title: string;
+  lang?: string;
+}
+
+type SeoTitle = {
+  title: string;
+};
+const { title } = Astro.props;
+const { info, lang } = await fetchData(Astro.url);
+const homeTitle = info.common.title;
+
+const slug = Astro.url.pathname;
+const slugTokens = slug.split("/").filter(Boolean);
+const supportedLanguages = ["tr", "en"];
+
+if (supportedLanguages.includes(slugTokens[0])) {
+  slugTokens.shift();
+}
+
+const currentSlugs = slugTokens.map((_token, i, arr) => {
+  return arr.slice(0, i + 1).join("/");
+});
+
+const allEntries = await getCollection(lang);
+
+const crumbTitles: SeoTitle[] = currentSlugs.map((currentSlug) => {
+  const entry = allEntries.find((entryTitle) => entryTitle.id === currentSlug);
+  const titleInfo = info.common.menu[currentSlug];
+  return {
+    url: "/" + currentSlug,
+    title: entry ? entry.data.title : titleInfo,
+  };
+});
+const titles = crumbTitles.reverse().map((crumbTitle) => {
+  var tempTitles = crumbTitle.title ? crumbTitle.title : 404;
+  return tempTitles;
+});
+
+const finalTitles = titles.join(" - ");
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>
+      {
+        title == homeTitle
+          ? homeTitle
+          : `${finalTitles} - ${homeTitle.split(" ")[0]}`
+      }
+    </title>
+    <!-- Java Scripts -->
+    <script src="../js/hero.js"></script>
+    <script src="../js/hamburger.js"></script>
+    <script src="../js/idle.js"></script>
+    <script src="../js/fuse.js"></script>
+    <script src="../js/main.js"></script>
+    <!-- Java Scripts end -->
+  </head>
+  <body>
+    <Header lang={lang} data={info} />
+    <slot />
+    <Footer data={info} />
+  </body>
+</html>
+<style is:global></style>

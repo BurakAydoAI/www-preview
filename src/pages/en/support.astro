@@ -1,0 +1,64 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { fetchData } from "../../utils/fetchData";
+import "../../css/support.css";
+
+const { info } = await fetchData(Astro.url);
+---
+
+<script src="../../js/support.js"></script>
+
+<Layout title={info.common.menu.support}>
+  <div id="supportButton" class="content support">
+    <div class="box info" style="width: 100%">
+      <div class="support-logo">
+        <img
+          src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0NTkuNjY4IDQ1OS42NjgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ1OS42NjggNDU5LjY2ODsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxMjhweCIgaGVpZ2h0PSIxMjhweCI+CjxnIGlkPSJYTUxJRF8yXyI+Cgk8Zz4KCQk8Zz4KCQkJPHBhdGggZD0iTTM1OS41NzQsMjk3LjA0M2MtMTguMjA0LDI1LjAwMi00Ny42OTIsNDEuMjg2LTgwLjkxNiw0MS4yODZoLTQ2LjYxOGMtMTYuMTA0LDAtMjkuODE4LTEwLjIyNC0zNS4wMTEtMjQuNTM0ICAgICBjLTYuNDEtMS45MTItMTIuNjk2LTQuMzk0LTE4LjgzLTcuNDQyYy0xMi45OS02LjQ1NC0yNC43ODUtMTUuMTk4LTM1LjE2OC0yNi4wM2MtNjcuMzUsMTQuNzk2LTExNy43NTcsNzQuODA4LTExNy43NTcsMTQ2LjYwMyAgICAgdjkuMzg0YzAsMTIuOSwxMC40NTgsMjMuMzU4LDIzLjM1OCwyMy4zNThoMzYyLjQwM2MxMi45LDAsMjMuMzU4LTEwLjQ1OCwyMy4zNTgtMjMuMzU4di05LjM4NCAgICAgQzQzNC4zOTIsMzcxLjQ2NCw0MDQuMzA5LDMyMy4wMzIsMzU5LjU3NCwyOTcuMDQzeiIgZmlsbD0iI2M1MjAyNiIvPgoJCQk8cGF0aCBkPSJNMTE4LjIwNSwyMzIuMTc4YzEwLjAzOSwwLDE4Ljc3Ny01LjU2NCwyMy4zMDQtMTMuNzc1YzAuMTE5LDAuMzI1LDAuMjQsMC42NDgsMC4zNjIsMC45NzEgICAgIGMwLjAzNiwwLjA5NywwLjA3MiwwLjE5NCwwLjEwOCwwLjI5MWMxMC42MiwyNy45NTQsMzEuMjg0LDUxLjM4OCw1OC41MzIsNjEuNjI3YzYuNTktMTAuNDcxLDE4LjI0My0xNy40MzUsMzEuNTMtMTcuNDM1aDQ2LjYxOCAgICAgYzQuNjUsMCw4Ljk3OC0xLjMxMiwxMi43NzItMy40MzNjNi4zNzItMy41NjMsMTIuMTAyLTEyLjYwMiwxNS4wNjEtMTcuMzkzYzQuNzM1LTcuNjY3LDguNDA0LTE1Ljc4OCwxMS42NTctMjQuNjQyICAgICBjMS44MjgsMy4zMiw0LjM0Miw2LjIwOCw3LjM1NCw4LjQ3MXYxMS40MzFjMCwyNS44My0yMS4wMTQsNDYuODQ1LTQ2Ljg0NSw0Ni44NDVIMjMyLjA0Yy04LjgxMywwLTE1Ljk1OCw3LjE0NS0xNS45NTgsMTUuOTU4ICAgICBjMCw4LjgxNCw3LjE0NSwxNS45NTgsMTUuOTU4LDE1Ljk1OGg0Ni42MThjNDMuNDI5LDAsNzguNzYxLTM1LjMzMiw3OC43NjEtNzguNzYxVjIyNi44NiAgICAgYzYuNDYtNC44NTMsMTAuNjM5LTEyLjU3NywxMC42MzktMjEuMjc4di00OC4xMTl2LTE4LjQ1MmMwLTguODgtNC4zNTUtMTYuNzM3LTExLjA0Mi0yMS41NjhDMzUxLjgzLDUxLjgxNiwyOTYuNzcsMCwyMjkuODMzLDAgICAgIEMxNjIuODk1LDAsMTA3LjgzNiw1MS44MTYsMTAyLjY1LDExNy40NDJjLTYuNjg3LDQuODMxLTExLjA0MiwxMi42ODktMTEuMDQyLDIxLjU2OHY2Ni41NyAgICAgQzkxLjYwOCwyMjAuMzExLDEwMy41NzUsMjMyLjE3OCwxMTguMjA1LDIzMi4xNzh6IE0yMjkuODMzLDMxLjkxN2M0OS41NTIsMCw5MC40MjMsMzcuODY4LDk1LjIsODYuMTg1ICAgICBjLTMuMTM2LDIuNDY3LTUuNzA1LDUuNjItNy40NzUsOS4yMzhjLTE1LjA1OC0zOS4yODYtNDguNjcyLTY2LjYzOC04Ny43MjYtNjYuNjM4Yy0zOS44OTYsMC03Mi45NzEsMjguMjkyLTg3LjY2Nyw2Ni40ODEgICAgIGMtMC4wMiwwLjA1Mi0wLjAzOSwwLjEwNS0wLjA1OSwwLjE1OGMtMS43Ny0zLjYxOC00LjMzOS02Ljc3MS03LjQ3NS05LjIzOEMxMzkuNDExLDY5Ljc4NSwxODAuMjgxLDMxLjkxNywyMjkuODMzLDMxLjkxN3oiIGZpbGw9IiNjNTIwMjYiLz4KCQk8L2c+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="
+          alt="Support ENDA"
+        />
+      </div>
+      <div class="text">
+        <h1>Support</h1>
+        In the case of you're having any kind of trouble with our products, please
+        follow the steps below.
+      </div>
+    </div>
+    <div class="box col">
+      <div class="step">1.</div>
+      <h1>FAQ</h1>
+      Frequently asked questions about our products.
+      <a href="automation/faq/" class="button">FAQ</a>
+    </div>
+    <div class="box col">
+      <div class="step">2.</div>
+      <h1>Manuals</h1>
+      Please use the search bar to find the product you're having trouble with and
+      download the manual. Most of the problems can be solved by simply reading the
+      provided manual.
+      <button class="button" id="product-search">Search</button>
+    </div>
+    <div class="box col">
+      <div class="step">3.</div>
+      <h1>Contact Your Distributor</h1>
+      If you can't solve the problem you're having, feel free to consult the distributor
+      you've purchased our products from for support.
+      <a href="distributors" class="button">Distributors</a>
+    </div>
+    <div class="box col">
+      <div class="step">4.</div>
+      <h1>Contact Us</h1>
+      If you still can't seem to solve your issue, please contact us. We're hear
+      to help!
+      <a href="contact" class="button">Contact</a>
+    </div>
+    <hr />
+    <div class="box">
+      <div class="text">
+        Manuals for devices that are not being actively manufactured.
+      </div>
+      <a href="automation/obsolete-manuals/" class="button"
+        >Obsolete Device Manuals</a
+      >
+    </div>
+  </div>
+</Layout>

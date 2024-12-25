@@ -1,0 +1,9 @@
+---
+import Layout from './Layout.astro';
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+  <h1>Title:{frontmatter.title}</h1>
+  <h3>ObsoleteManualsLayout</h3>
+</Layout>

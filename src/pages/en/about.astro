@@ -1,0 +1,89 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { fetchData } from "../../utils/fetchData";
+import { Image } from "astro:assets";
+import myImage from "../../assets/img/about.jpg";
+import "../../css/about.css";
+
+const { info } = await fetchData(Astro.url);
+---
+
+<Layout title={info.common.menu.about + " Us"}>
+  <div id="aboutPage" class="content" data-invalidate="1">
+    <div class="img-logo">
+      <div class="box img">
+        <div class="automation">
+          <Image
+            src={myImage}
+            alt="Automation Background"
+            width={400}
+            height={400}
+            loading="eager"
+            quality="mid"
+          />
+        </div>
+      </div>
+      <div class="box logo-bottom">
+        <div class="icon-common-endalogo svg-image"></div>
+      </div>
+    </div>
+    <div class="text">
+      <div class="box about">
+        <h1>About <strong>ENDA</strong></h1>
+        <p>
+          Sisel Engineering Inc., headquartered in Istanbul, was founded by 4
+          engineers in 1989 for the purpose of marketing sensors, control
+          devices &amp; transmitters related to measurement of
+          physical parameters (such as temperature, humidity, pressure, and flow
+          rate, level) and offering related engineering services. Encouraged by
+          the achievements in 1992, the Company started production in the field
+          of industrial electronics using ENDA trade mark.
+        </p>
+
+        <p>
+          By the virtue of its dealer network, the Company is able to provide
+          the machinery manufacturers and industrial plants which constitute the
+          power of industry, with customer focused solutions. The company also
+          increases the productivity of companies and contributes them in
+          realizing their targets.
+        </p>
+
+        <p>
+          We are in the same business for 28 years and our development is due
+          primarily to the importance placed on R&amp;D and investments on
+          technology. For increasing our share in the market, we shall continue
+          doing investments.
+        </p>
+
+        <p>
+          In 2009 September, the company has also started to do business in
+          Lighting Systems and Control area. With our experienced and dynamic
+          team, we are providing technical and architectural lighting system
+          solutions, as well as lighting automation systems for indoor and
+          outdoor lighting projects.
+        </p>
+      </div>
+      <div class="box">
+        <h2>Services</h2>
+        We are providing a portfolio of services along the entire manufacturing-consult-design-build-operate-maintain
+        cycle regarding the Industrial Automation and Lighting systems.
+      </div>
+      <div class="box">
+        <h2>Values</h2>
+        What make our services indispensable are our services: We are with you at
+        any time with our lighting solutions defining &quot;Efficiency, Energy Saving,
+        Aesthetics, High Technology, and Quality.&quot;
+      </div>
+      <div class="box">
+        <h2>Vision</h2>
+        To be a pioneering company as a first choice which is driving the changes
+        in the Industrial Automation and Lighting Systems sector.
+      </div>
+      <div class="box">
+        <h2>Mission</h2>
+        To manufacture customer oriented, highly technologic, eco and qualified products
+        with a sense of continuous improvement and innovation.
+      </div>
+    </div>
+  </div>
+</Layout>

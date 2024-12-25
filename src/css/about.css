@@ -1,0 +1,64 @@
+#aboutPage.content {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+
+.content > .img-logo {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .content > .img-logo {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+  }
+}
+
+.box.img {
+  display: flex;
+  height: 400px;
+  max-height: 400px;
+}
+
+.content .automation {
+  /* background: url("/img/about.jpg");
+  background-position: center;
+  background-size: cover; */
+  overflow: hidden;
+}
+
+.content > .text {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.text > .box {
+  flex: 1;
+  width: 50%;
+  text-align: left;
+  flex-basis: 40%;
+}
+
+.text > .box.about {
+  flex: 2;
+  flex-basis: 100%;
+}
+
+h1,
+h2 {
+  color: #f72432;
+  font-weight: 400;
+  text-align: left;
+}
+
+.box.logo-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

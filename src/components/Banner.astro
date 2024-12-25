@@ -1,0 +1,71 @@
+---
+import { defaultLang } from "../i18n/utils";
+import ImageResponsive from "./ImageResponsive.astro";
+import mobileImg from "../assets/img/hero-1-small.jpg";
+import tabletImg from "../assets/img/hero-1-medium.jpg";
+import desktopImg from "../assets/img/hero-1-large.jpg";
+import mobileImg2 from "../assets/img/hero-2-small.jpg";
+import tabletImg2 from "../assets/img/hero-2-medium.jpg";
+import desktopImg2 from "../assets/img/hero-2-large.jpg";
+import mobileImg4 from "../assets/img/hero-4-small.jpg";
+import tabletImg4 from "../assets/img/hero-4-medium.jpg";
+import desktopImg4 from "../assets/img/hero-4-large.jpg";
+import mobileImgEN from "../assets/img/hero-1-small.en.jpg";
+import tabletImgEN from "../assets/img/hero-1-medium.en.jpg";
+import desktopImgEN from "../assets/img/hero-1-large.en.jpg";
+import mobileImg2EN from "../assets/img/hero-2-small.en.jpg";
+import tabletImg2EN from "../assets/img/hero-2-medium.en.jpg";
+import desktopImg2EN from "../assets/img/hero-2-large.en.jpg";
+import mobileImg4EN from "../assets/img/hero-4-small.en.jpg";
+import tabletImg4EN from "../assets/img/hero-4-medium.en.jpg";
+import desktopImg4EN from "../assets/img/hero-4-large.en.jpg";
+
+const { lang } = Astro.props;
+const baseUrl = lang === defaultLang ? "" : `/${lang}`;
+---
+
+<div class="banner-container" data-invalidate="78">
+  <div class="banner hero-1 active">
+    <ImageResponsive
+      mobileImgUrl={lang === defaultLang ? mobileImg : mobileImgEN}
+      tabletImgUrl={lang === defaultLang ? tabletImg : tabletImgEN}
+      desktopImgUrl={lang === defaultLang ? desktopImg : desktopImgEN}
+      alt="ENDA ERC endustri 4.0"
+      loading="eager"
+      ,
+    />
+    <a href={`${baseUrl}/automation/iot/erc/`} aria-label="ENDA ERC"></a>
+  </div>
+  <div class="banner hero-1">
+    <ImageResponsive
+      mobileImgUrl={lang === defaultLang ? mobileImg2 : mobileImg2EN}
+      tabletImgUrl={lang === defaultLang ? tabletImg2 : tabletImg2EN}
+      desktopImgUrl={lang === defaultLang ? desktopImg2 : desktopImg2EN}
+      alt="ENDA akilli, Kopmakt ve bolunmus seri"
+      loading="lazy"
+    />
+    <a
+      href={`${baseUrl}/automation/blog/2023-06-01-yeni-logo`}
+      aria-label="Yeni logomuz hakkinda bilgi edinin"></a>
+  </div>
+  <div class="banner hero-1">
+    <ImageResponsive
+      mobileImgUrl={lang == defaultLang ? mobileImg4 : mobileImg4EN}
+      tabletImgUrl={lang === defaultLang ? tabletImg4 : tabletImg4EN}
+      desktopImgUrl={lang === defaultLang ? desktopImg4 : desktopImg4EN}
+      loading="lazy"
+      alt="ENDA Dokunmatik ve NFC ile cok pratik"
+    />
+    <a
+      href={`${baseUrl}/automation/defrost/ecool1036/`}
+      aria-label="ENDA ECOOL 1036"></a>
+  </div>
+  <div class="nav">
+    <button class="active" aria-label="ENDA ERC"></button>
+    <button aria-label="ENDA ESDC 4334"></button>
+    <button aria-label="ENDA ECOOL 1036"></button>
+  </div>
+  <div class="progress">
+    <div class="fill">&nbsp;</div>
+  </div>
+</div>

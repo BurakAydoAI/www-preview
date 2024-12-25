@@ -1,0 +1,195 @@
+.banner {
+  color: #f3f1f2;
+  background-color: #f3f1f2;
+  position: relative;
+}
+
+.banner a {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.banner h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0px;
+  padding: 10px;
+}
+
+.banner .label-container {
+  opacity: 0.8;
+}
+
+.nav {
+  cursor: pointer;
+}
+/*
+ *
+
+ FIND-(?<size>small|medium|large)(?<lang>\.en)?(?<dpi>)?(?<ext>.*)\?(?<cacheBust>\w*)
+ REPLACE-$<size>$<lang>$<dpi>$<ext>?$<cacheBust>
+ */
+
+/****************************
+ *         new-logo
+ ***************************/
+
+/* Small */
+.banner.hero-1 {
+  background-color: #fefaf9;
+}
+.banner.hero-1.en {
+}
+
+.banner.hero-2 {
+  background-color: #fefaf9;
+}
+.banner.hero-2.en {
+}
+
+.banner.hero-3 {
+  background-color: #f9f9f9;
+}
+.banner.hero-3.en {
+}
+
+.banner.hero-4 {
+  background-color: #fefaf9;
+}
+.banner.hero-4.en {
+}
+
+/* Small, HiDPI */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .banner.hero-1 {
+  }
+  .banner.hero-1.en {
+  }
+
+  .banner.hero-2 {
+  }
+  .banner.hero-2.en {
+  }
+
+  .banner.hero-3 {
+  }
+  .banner.hero-3.en {
+  }
+
+  .banner.hero-4 {
+  }
+  .banner.hero-4.en {
+  }
+}
+
+/* Medium */
+@media screen and (min-width: 768px) {
+  .banner.hero-1 {
+  }
+  .banner.hero-1.en {
+  }
+
+  .banner.hero-2 {
+  }
+  .banner.hero-2.en {
+  }
+
+  .banner.hero-3 {
+  }
+  .banner.hero-3.en {
+  }
+
+  .banner.hero-4 {
+  }
+  .banner.hero-4.en {
+  }
+}
+
+/* Medium, HiDPI */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 768px),
+  only screen and (min--moz-device-pixel-ratio: 2) and (min-width: 768px),
+  only screen and (-o-min-device-pixel-ratio: 2/1) and (min-width: 768px),
+  only screen and (min-device-pixel-ratio: 2) and (min-width: 768px),
+  only screen and (min-resolution: 192dpi) and (min-width: 768px),
+  only screen and (min-resolution: 2dppx) and (min-width: 768px) {
+  .banner.hero-1 {
+  }
+  .banner.hero-1.en {
+  }
+
+  .banner.hero-2 {
+  }
+  .banner.hero-2.en {
+  }
+
+  .banner.hero-3 {
+  }
+  .banner.hero-3.en {
+  }
+
+  .banner.hero-4 {
+  }
+  .banner.hero-4.en {
+  }
+}
+
+/* Large */
+@media screen and (min-width: 900px) {
+  .banner.hero-1 {
+  }
+  .banner.hero-1.en {
+  }
+
+  .banner.hero-2 {
+  }
+  .banner.hero-2.en {
+  }
+
+  .banner.hero-3 {
+  }
+  .banner.hero-3.en {
+  }
+
+  .banner.hero-4 {
+  }
+  .banner.hero-4.en {
+  }
+}
+
+/* Large, HiDPI */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 900px),
+  only screen and (min--moz-device-pixel-ratio: 2) and (min-width: 900px),
+  only screen and (-o-min-device-pixel-ratio: 2/1) and (min-width: 900px),
+  only screen and (min-device-pixel-ratio: 2) and (min-width: 900px),
+  only screen and (min-resolution: 192dpi) and (min-width: 900px),
+  only screen and (min-resolution: 2dppx) and (min-width: 900px) {
+  .banner.hero-1 {
+  }
+  .banner.hero-1.en {
+  }
+
+  .banner.hero-2 {
+  }
+  .banner.hero-2.en {
+  }
+
+  .banner.hero-3 {
+  }
+  .banner.hero-3.en {
+  }
+
+  .banner.hero-4 {
+  }
+  .banner.hero-4.en {
+  }
+}
+
+/* HERO NEW LOGO END */

@@ -1,0 +1,121 @@
+---
+import Layout from "./Layout.astro";
+import Imagecomp from "../components/ImageComp.astro";
+import { fetchData } from "../utils/fetchData";
+import { defaultLang } from "../i18n/utils";
+import { getCollection } from "astro:content";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+
+const { info, lang } = await fetchData(Astro.url);
+
+let baseUrl = lang === defaultLang ? "/" : `/${lang}/`;
+
+const { categoryData } = Astro.props;
+const collection = await getCollection(lang);
+
+const currentDepth = categoryData.id.split("/").length;
+
+const collectionFiltered = collection.filter(
+  (c) =>
+    c.id.startsWith(`${categoryData.id}`) &&
+    c.id.split("/").length === currentDepth + 1
+);
+
+const categoryCollection = collectionFiltered
+  .filter((c) => c.data.layout == "layouts/CategoryLayout.astro")
+  .sort((a, b) => {
+    if (a.data.layout !== "layouts/CategoryLayout.astro") {
+      throw new Error(`Unexpected layout ${a.data.layout}`);
+    }
+    if (b.data.layout !== "layouts/CategoryLayout.astro") {
+      throw new Error(`Unexpected layout ${a.data.layout}`);
+    }
+    return a.data.weight - b.data.weight;
+  });
+
+const productCollection = collectionFiltered
+  .filter((c) => c.data.layout === undefined) // Products have undefined layout
+  .sort((a, b) => {
+    if (a.data.layout !== undefined || b.data.layout !== undefined) {
+      throw new Error(`Should never happen`);
+    }
+    return a.data.weight - b.data.weight;
+  });
+---
+
+<Layout title={categoryData.data.title}>
+  <div class="content category-index">
+    <Breadcrumbs entry={categoryData} />
+    <div class="box">
+      <div class="detailed_groups">
+        {
+          categoryCollection.length > 0
+            ? // Display categories if they exist
+              categoryCollection.map((item) => {
+                const { id, data: itemData } = item;
+                const imageUrl = `/src/assets/${id}/icon.svg`;
+                if (itemData.layout !== "layouts/CategoryLayout.astro")
+                  return null;
+                return (
+                  <a href={`${baseUrl}${id}`} class="enda-flex-row">
+                    {imageUrl ? (
+                      <div
+                        class="svg-image"
+                        style={{
+                          backgroundImage: `url(/${id}/icon.svg)`,
+                        }}
+                      />
+                    ) : (
+                      <div class="svg-image">
+                        <Imagecomp
+                          imagePath={imageUrl}
+                          altText="Icon image"
+                          loading="eager"
+                          disableAutoPanning={true}
+                          height={50.4}
+                        />
+                      </div>
+                    )}
+                    <div class="text enda-flex-column enda-flex-start">
+                      <div class="title enda-flex-row">{itemData.title}</div>
+                    </div>
+                  </a>
+                );
+              })
+            : // If no categories, display products
+              productCollection.map((item, i) => {
+                const { id, data: itemData } = item;
+                const imageUrl = `/src/assets/${id}/photo1.jpg`;
+                if (itemData.layout !== undefined) return null;
+                return (
+                  <a href={`${baseUrl}${id}`} class="enda-flex-row product">
+                    <div class="jpeg-image">
+                      <Imagecomp
+                        imagePath={imageUrl}
+                        loading={i > 6 ? "lazy" : "eager"}
+                        altText="Product"
+                        disableAutoPanning={true}
+                        height={116}
+                      />
+                    </div>
+                    <div class="text enda-flex-column enda-flex-start">
+                      <div class="title enda-flex-row">
+                        {itemData.title}
+                        {itemData.new && (
+                          <span class="new-device">
+                            {info.common.new_badge}
+                          </span>
+                        )}
+                      </div>
+                      {itemData.short && (
+                        <div class="short">{itemData.short}</div>
+                      )}
+                    </div>
+                  </a>
+                );
+              })
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

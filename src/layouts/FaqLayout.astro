@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { defaultLang } from "../i18n/utils";
+import { fetchData } from "../utils/fetchData";
+import { getCollection } from "astro:content";
+import { parse } from "marked";
+import "../css/faq.css";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+
+const { faqData } = Astro.props;
+
+const { info, lang } = await fetchData(Astro.url);
+
+const baseUrl = lang == defaultLang ? "/" : `${lang}/`;
+
+const collection = await getCollection(lang);
+
+const faqCollection = collection.filter(
+  (c) => c.id.startsWith(`automation/faq`) && c.id !== `automation/faq`
+);
+---
+
+<script src="../js/faq.js"></script>
+
+<Layout title={faqData.data.title}>
+  <div class="content faq">
+    <Breadcrumbs entry={faqData} />
+    <div class="layout">
+      <div class="box faq-nav">
+        <h2>{info.faq.others}</h2>
+        {
+          faqCollection.map((item) => {
+            const { id, data: faqData } = item;
+            const isActive = Astro.url.pathname === `/${id}`;
+            return (
+              <a class={isActive ? "active" : ""} href={`${baseUrl}${id}`}>
+                {faqData.title.split("-")[0]}
+              </a>
+            );
+          })
+        }
+      </div>
+      <div class="box faq-content">
+        <h1>{faqData.data.title}</h1>
+        <article set:html={parse(faqData.body)} />
+      </div>
+    </div>
+  </div>
+</Layout>
