@@ -17,7 +17,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules/.astro/assets
-          key: ${{ runner.os }}-images-${{ hashFiles('node_modules/.astro/assets') }}
+          key: ${{ runner.os }}-images-${{ hashFiles('node_modules/.astro/assets/**/*') }}
           restore-keys: |
             ${{ runner.os }}-images
 
@@ -32,8 +32,3 @@ jobs:
         with:
           node-version: 18.19
           package-manager: npm
-      # - uses: FirebaseExtended/action-hosting-deploy@v0
-      #   with:
-      #     repoToken: ${{ secrets.GITHUB_TOKEN }}
-      #     firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ASTRO_DEPLOY_A0802 }}
-      #     projectId: astro-deploy-a0802
