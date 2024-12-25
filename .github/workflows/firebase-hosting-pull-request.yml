@@ -27,11 +27,6 @@ jobs:
           cd node_modules/.astro/assets
           ls
 
-      - name: Install, build, and upload your site output
-        uses: withastro/action@v2
-        with:
-          node-version: 18.19
-          package-manager: npm
 
       - name: Debug Cache Files
         run: |
