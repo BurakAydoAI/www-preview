@@ -31,7 +31,7 @@ jobs:
         uses: withastro/action@v2
         with:
           path: /work/www-preview/www-preview
-          node-version: 18.17.1
+          node-version: 18.19
           package-manager: npm
       # - uses: FirebaseExtended/action-hosting-deploy@v0
       #   with:
