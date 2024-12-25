@@ -32,3 +32,8 @@ jobs:
         with:
           node-version: 18.19
           package-manager: npm
+
+      - name: Debug Cache Files
+        run: |
+          echo "Listing all files in cache directory:"
+          ls -R node_modules/.astro/assets
