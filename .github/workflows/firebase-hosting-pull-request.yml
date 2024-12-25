@@ -19,7 +19,7 @@ jobs:
           path: node_modules/.astro/assets
           key: ${{ runner.os }}-images-${{ hashFiles('node_modules/.astro/assets/**/*') }}
           restore-keys: |
-            ${{ runner.os }}-images
+            ${{ runner.os }}-images-$
 
       - name: Cache is loaded ?
         run: |
@@ -32,4 +32,3 @@ jobs:
         with:
           node-version: 18.19
           package-manager: npm
-
