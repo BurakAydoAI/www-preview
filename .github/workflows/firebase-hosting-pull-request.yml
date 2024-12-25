@@ -30,7 +30,7 @@ jobs:
       - name: Install, build, and upload your site output
         uses: withastro/action@v2
         with:
-        path: /work/www-preview/www-preview
+          path: /work/www-preview/www-preview
           node-version: 18.17.1
           package-manager: npm
       # - uses: FirebaseExtended/action-hosting-deploy@v0
