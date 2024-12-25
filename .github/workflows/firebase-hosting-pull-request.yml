@@ -24,6 +24,7 @@ jobs:
       - name: Cache is loaded ?
         run: |
           pwd
+          cd node_modules/.astro/assets
           ls
 
       - name: Install, build, and upload your site output
