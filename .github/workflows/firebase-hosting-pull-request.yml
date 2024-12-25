@@ -23,6 +23,7 @@ jobs:
 
       - name: Cache is loaded ?
         run: |
+          pwd
           ls
 
       - name: Install, build, and upload your site output
